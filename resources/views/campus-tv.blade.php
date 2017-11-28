@@ -18,7 +18,7 @@
                     </a>
                 @endif
 
-                {{$event->headline}}
+                <a href="">{{$event->headline}}</a>
             </li>
         @endforeach
     </ul>
