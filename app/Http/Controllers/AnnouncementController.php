@@ -25,7 +25,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        return view('campus-tv-partials.form');
+        return view('campus-tv-partials.form', ['event' => null]);
     }
 
 
