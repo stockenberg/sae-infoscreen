@@ -24,7 +24,7 @@ Route::get('/bewertungen/{id}',
 
 
 Route::get('/announcements', function () {
-	return \App\Announcement::all();
+	return \App\Announcement::where('active', '=', true)->get();
 });
 
 Auth::routes();

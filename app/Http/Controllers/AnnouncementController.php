@@ -28,6 +28,7 @@ class AnnouncementController extends Controller
         return view('campus-tv-partials.form');
     }
 
+
 	public function toggleVisibility($id)
 	{
 		$event = Announcement::find($id);
