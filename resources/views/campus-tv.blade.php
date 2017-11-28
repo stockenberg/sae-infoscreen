@@ -2,7 +2,7 @@
 
 @section('backend_content')
     <p>
-        <a href="" class="btn btn-success">Neues Event</a>
+        <a href="{{route('campus-tv-create')}}" class="btn btn-success">Neues Event</a>
     </p>
     <ul class="list-group">
         @foreach($events as $event)
@@ -18,7 +18,11 @@
                     </a>
                 @endif
 
-                <a href="">{{$event->headline}}</a>
+                <a href="{{route('campus-tv-edit', ['id' => $event->id])}}">{{$event->headline}}</a>
+
+                    <a href="{{route('campus-tv-destroy', ['id' => $event->id])}}" class="btn-danger btn pull-right">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
             </li>
         @endforeach
     </ul>
