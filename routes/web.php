@@ -28,14 +28,15 @@ Route::get('/announcements', function () {
 	return \App\Announcement::all();
 });
 
+Auth::routes();
+
+Route::get("/dashboard", ["uses" => "DashboardController@index", "as" => "tdot.dashboard"]);
 
 
 Route::group(["prefix" => "tdot"], function(){
 
-    Auth::routes();
 
     Route::get('', ["uses" => "DashboardController@listEvents", "as" => "tdot.list"]);
 
 
-    Route::get("/dashboard", ["uses" => "DashboardController@index", "as" => "tdot.dashboard"]);
 });

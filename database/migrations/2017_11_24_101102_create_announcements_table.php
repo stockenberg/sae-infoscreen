@@ -6,31 +6,32 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAnnouncementsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('announcements', function (Blueprint $table) {
-            $table->increments('id');
-		$table->string('headline');
-		$table->string('details');
-		$table->string('subheadline');
-		$table->string('background');
-		$table->boolean('alumni')->default(false);
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		/*
+		Schema::create('announcements', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('headline');
+			$table->string('details');
+			$table->string('subheadline');
+			$table->string('background');
+			$table->boolean('alumni')->default(false);
+			$table->timestamps();
+		});*/
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('announcements');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+
+	}
 }
