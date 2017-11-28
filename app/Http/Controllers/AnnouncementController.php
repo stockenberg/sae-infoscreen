@@ -52,7 +52,6 @@ class AnnouncementController extends Controller
     	$this->validate($request, [
     		'headline' => 'required',
     		'details' => 'required',
-    		'subheadline' => 'required',
     		'background' => 'required'
 		]);
 
