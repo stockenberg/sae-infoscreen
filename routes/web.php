@@ -16,12 +16,11 @@ header('Access-Control-Allow-Origin: http://localhost:8080');
 
 Route::get('/', ["uses" => "HomeController@index", "as" => "welcome"]);
 
-Route::get('/bewertungen/', function (){
-    return view("overview");
+Route::get('/bewertungen/', function () {
+	return view("overview");
 });
-Route::get('/bewertungen/{id}', ["uses" => "RateController@index", "as" => "bewertungen"]);
-
-
+Route::get('/bewertungen/{id}',
+	["uses" => "RateController@index", "as" => "bewertungen"]);
 
 
 Route::get('/announcements', function () {
@@ -30,13 +29,22 @@ Route::get('/announcements', function () {
 
 Auth::routes();
 
-Route::get("/dashboard", ["uses" => "DashboardController@index", "as" => "tdot.dashboard"]);
+Route::group(["prefix" => "admin"], function () {
+
+	Route::get("/",
+		["uses" => "DashboardController@index", "as" => "tdot.dashboard"]);
+
+	Route::get('/campus-tv', 'AnnouncementController@index')->name('campus-tv');
+	Route::get('/campus-tv/toggle/{id}', 'AnnouncementController@toggleVisibility')->name('campus-tv-toggle');
+
+});
 
 
-Route::group(["prefix" => "tdot"], function(){
+Route::group(["prefix" => "tdot"], function () {
 
 
-    Route::get('', ["uses" => "DashboardController@listEvents", "as" => "tdot.list"]);
+	Route::get('',
+		["uses" => "DashboardController@listEvents", "as" => "tdot.list"]);
 
 
 });

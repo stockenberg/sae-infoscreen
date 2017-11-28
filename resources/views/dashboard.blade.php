@@ -13,14 +13,15 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                SAE Campus Administration
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                &nbsp;
+                <li><a href="">Tdot Verwaltung</a></li>
+                <li><a href="{{route('campus-tv')}}">Campus-TV Verwaltung</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -55,17 +56,17 @@
     </div>
 </nav>
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    You are logged in!
+                    <div class="panel-body">
+                        @yield('backend_content')
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
