@@ -26,7 +26,7 @@
                <option value="bgBlue" {{$event && $event->background === "bgBlue" ? 'selected' : ''}}>Blau</option>
                <option value="bgLightblue" {{$event && $event->background === "bgLightblue" ? 'selected' : ''}}>Hellblau</option>
                <option value="bgYellow" {{$event && $event->background === "bgYellow" ? 'selected' : ''}}>Gelb</option>
-               <option value="bgOrange" {{$even && $event->background === "bgOrange" ? 'selected' : ''}}>Orange</option>
+               <option value="bgOrange" {{$event && $event->background === "bgOrange" ? 'selected' : ''}}>Orange</option>
            </select>
        </div>
 
