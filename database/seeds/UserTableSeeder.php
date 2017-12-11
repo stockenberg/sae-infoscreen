@@ -13,8 +13,8 @@ class UserTableSeeder extends Seeder
     {
 
 		\Illuminate\Support\Facades\DB::table('users')->insert([
-            'username' => 'admin',
-            'password' => bcrypt('admin'),
+            'username' => 'supi',
+            'password' => bcrypt('Qapla-2015'),
         ]);
     }
 }
