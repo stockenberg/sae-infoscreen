@@ -15,6 +15,8 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 SAE Campus Administration
             </a>
+
+
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -22,6 +24,17 @@
             <ul class="nav navbar-nav">
                 <li><a href="">Tdot Verwaltung</a></li>
                 <li><a href="{{route('campus-tv')}}">Campus-TV Verwaltung</a></li>
+                <li>
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
