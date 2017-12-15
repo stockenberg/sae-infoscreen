@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
+
+	private $id;
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +28,23 @@ class MainController extends Controller
 			->get();
 
         return view('ircc.main', ['contacts' => $contacts, 'departments' => $departments]);
+    }
+
+	public function indexDepartments($id)
+	{
+		$this->id = $id;
+
+		$contacts = IndustrialContact::with([
+			'departments',
+			'histories' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'jobs' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'students'])
+			->whereHas('departments', function ($q) {
+				$q->where('department_id', $this->id);
+			})
+			->get();
+
+		return $contacts;
     }
 
     /**

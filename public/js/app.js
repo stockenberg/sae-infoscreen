@@ -1943,11 +1943,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            active: 0
+            active: 0,
+            companies: null
         };
     },
     mounted: function mounted() {
         console.log('component ready..');
+        this.companies = this.items;
     },
 
     computed: {
@@ -1957,7 +1959,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         filterDepartments: function filterDepartments(id) {
-            console.log(id);
+            var _this = this;
+
+            axios.get('/api/ircc/' + id).then(function (res) {
+                _this.companies = res.data;
+            });
         }
     },
     components: { ContactListSettings: __WEBPACK_IMPORTED_MODULE_0__ContactListSettings_vue___default.a, Nl2br: __WEBPACK_IMPORTED_MODULE_1_vue_nl2br___default.a },
@@ -32187,7 +32193,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "table-responsive"
   }, [_c('table', {
     staticClass: "table"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', [_vm._l((_vm.items), function(item) {
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', [_vm._l((_vm.companies), function(item) {
     return [_c('tr', [_c('td', {
       attrs: {
         "scope": "row"

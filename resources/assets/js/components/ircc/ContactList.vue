@@ -22,7 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <template v-for="item in items">
+                <template v-for="item in companies">
                     <tr>
                         <td scope="row">
                             {{item.likes}}
@@ -99,10 +99,12 @@
         data() {
             return {
                 active: 0,
+                companies: null
             }
         },
         mounted() {
             console.log('component ready..');
+            this.companies = this.items;
         },
         computed: {
             iconPath() {
@@ -111,7 +113,10 @@
         },
         methods: {
             filterDepartments(id) {
-                console.log(id);
+                axios.get('/api/ircc/' + id)
+                    .then(res => {
+                        this.companies = res.data;
+                    })
             }
         },
         components: {ContactListSettings, Nl2br},
