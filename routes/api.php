@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/ircc/{id}',
+	['uses' => 'ircc\MainController@indexDepartments', 'as' => 'ircc.filtered']);

@@ -35,12 +35,29 @@ Route::group(["prefix" => "admin"], function () {
 		["uses" => "DashboardController@index", "as" => "tdot.dashboard"]);
 
 	Route::get('/campus-tv', 'AnnouncementController@index')->name('campus-tv');
-	Route::get('/campus-tv/create', 'AnnouncementController@create')->name('campus-tv-create');
-	Route::get('/campus-tv/edit/{id}', 'AnnouncementController@edit')->name('campus-tv-edit');
-	Route::post('/campus-tv/update/{id}', 'AnnouncementController@update')->name('campus-tv-update');
-	Route::post('/campus-tv/store/', 'AnnouncementController@store')->name('campus-tv-store');
-	Route::get('/campus-tv/delete/{id}', 'AnnouncementController@destroy')->name('campus-tv-destroy');
-	Route::get('/campus-tv/toggle/{id}', 'AnnouncementController@toggleVisibility')->name('campus-tv-toggle');
+	Route::get('/campus-tv/create', 'AnnouncementController@create')
+		->name('campus-tv-create');
+	Route::get('/campus-tv/edit/{id}', 'AnnouncementController@edit')
+		->name('campus-tv-edit');
+	Route::post('/campus-tv/update/{id}', 'AnnouncementController@update')
+		->name('campus-tv-update');
+	Route::post('/campus-tv/store/', 'AnnouncementController@store')
+		->name('campus-tv-store');
+	Route::get('/campus-tv/delete/{id}', 'AnnouncementController@destroy')
+		->name('campus-tv-destroy');
+	Route::get('/campus-tv/toggle/{id}',
+		'AnnouncementController@toggleVisibility')->name('campus-tv-toggle');
+
+	Route::group(['prefix' => 'ircc'], function () {
+		Route::get('/',
+			['uses' => 'ircc\MainController@index', 'as' => 'ircc.main']);
+
+		Route::get('/add',
+			['uses' => 'ircc\MainController@create', 'as' => 'ircc.create']);
+
+		Route::post('/add',
+			['uses' => 'ircc\MainController@store', 'as' => 'ircc.store']);
+	});
 
 });
 
