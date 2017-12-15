@@ -58,4 +58,5 @@ Route::group(["prefix" => "tdot"], function () {
 		["uses" => "DashboardController@listEvents", "as" => "tdot.list"]);
 
 
+
 });

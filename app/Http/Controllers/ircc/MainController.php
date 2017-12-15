@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ircc;
 
+use App\IndustrialContact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('ircc.main');
+    	$contacts = IndustrialContact::with(['departments', 'histories', 'jobs', 'students'])->get();
+
+        return view('ircc.main', ['contacts' => $contacts]);
     }
 
     /**

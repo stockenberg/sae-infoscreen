@@ -1,30 +1,95 @@
 <template>
     <div class="" id="">
+        <h4>Sortierungen</h4>
+        <nav>
+            <a href="" class=""><img :src="iconPath + 'web.png'" height="30px" alt=""></a>
+            <a href="" class=""><img :src="iconPath + 'audio.png'" height="30px" alt=""></a>
+            <a href="" class=""><img :src="iconPath + 'film.png'" height="30px" alt=""></a>
+            <a href="" class=""><img :src="iconPath + 'game.png'" height="30px" alt=""></a>
+            <a href="" class=""><img :src="iconPath + 'cross.png'" height="30px" alt=""></a>
+            <a href="" class=""><img :src="iconPath + 'animation.png'" height="30px" alt=""></a>
+        </nav>
+        <!-- Button trigger modal -->
+        <hr>
+        <h3 class="page-header">Industriepartner</h3>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
                     <th>Likes</th>
                     <th>Company</th>
-                    <th>Department</th>
-                    <th>Stuff</th>
+                    <th class="text-center">Fachrichtung</th>
+                    <th>Persönlicher Kontakt</th>
+                    <th>Letzter Kontakt</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td scope="row"></td>
-                    <td><img :src="fb + '/audio.png'" alt=""></td>
-                    <td><img :src="fb + '/game.png'" alt=""></td>
-                    <td><img :src="fb + '/cross.png'" alt=""></td>
-                    <td><img :src="fb + '/games.png'" alt=""></td>
-                    <td><img :src="fb + '/web.png'" alt=""></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <template v-for="item in items">
+                    <tr>
+                        <td scope="row">
+                            {{item.likes}}
+                        </td>
+                        <td>
+                            <strong class="toggle-details" @click="active = (active !== item.id) ? item.id : null">{{item.name}}</strong>
+                        </td>
+                        <td class="text-center fb">
+                            <img v-for="department in item.departments" :src="iconPath + department.name + '.png'" alt="">
+                        </td>
+                        <td>
+                            {{item.primary_contact}}
+                        </td>
+                        <td>
+                            {{item.last_contact}}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+                                Edit
+                            </button>
+                            <contact-list-settings :id="item.id"></contact-list-settings>
+                        </td>
+                    </tr>
+                    <tr v-if="active === item.id">
+                        <td colspan="6" class="row">
+                            <div class="">
+                                <div class="panel panel-default col col-md-6">
+                                    <div class="panel-body">
+                                        <h4 class="text-info">Adresse</h4>
+                                        <p>
+                                            {{item.adress}}
+                                        </p>
+                                        <hr>
+                                        <h4 class="text-info">Kontakthistorie</h4>
+                                        <ul>
+                                            <li v-for="entry in item.histories">{{entry.entry}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default col col-md-6">
+                                    <div class="panel-body">
+                                        <h4 class="text-info">Letzter Kontakt</h4>
+                                        <p>{{item.last_contact_person}}</p>
+                                        <hr>
+                                        <h4 class="text-info">Studenten bei der Firma</h4>
+                                        <ul>
+                                            <li v-for="student in item.students">{{student.name}}</li>
+                                        </ul>
+                                        <hr>
+                                        <h4 class="text-info">Aktuelle Job Angebote</h4>
+                                        <ul>
+                                            <li v-for="job in item.jobs"><span class="label label-success">{{job.date}}</span>
+                                                {{job.description}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </template>
+
                 </tbody>
             </table>
         </div>
@@ -32,22 +97,51 @@
 </template>
 
 <script>
+    import ContactListSettings from './ContactListSettings.vue';
+
     export default {
         data() {
-            return {}
+            return {
+                active: 0,
+            }
         },
         mounted() {
             console.log('component ready..');
         },
         computed: {
-          fb () {
-              return this.imgPath + '/fb_icons/';
-          }
+            iconPath() {
+                return this.imgPath + '/fb_icons/';
+            }
         },
-        props: ['imgPath']
+        components: {ContactListSettings},
+        props: ['imgPath', 'items']
     }
 </script>
 
-<style>
+<style scoped lang="scss">
+    h4 {
+        margin-bottom: 20px;
+    }
 
+    .fb {
+        img {
+            padding: 2px;
+            height: 30px;
+            width: auto;
+        }
+    }
+
+    nav {
+        a {
+            margin: 10px;
+        }
+    }
+
+    .toggle-details {
+        padding: 10px;
+        cursor: pointer;
+        &:hover {
+            color: #333;
+        }
+    }
 </style>
