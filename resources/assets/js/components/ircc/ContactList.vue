@@ -113,7 +113,7 @@
         },
         methods: {
             filterDepartments(id) {
-                axios.get('/api/ircc/' + id)
+                axios.get('//10.7.1.1/sae-infoscreen-git/public/api/ircc/' + id)
                     .then(res => {
                         this.companies = res.data;
                     })
