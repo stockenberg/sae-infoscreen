@@ -42,7 +42,13 @@ Route::group(["prefix" => "admin"], function () {
 	Route::get('/campus-tv/delete/{id}', 'AnnouncementController@destroy')->name('campus-tv-destroy');
 	Route::get('/campus-tv/toggle/{id}', 'AnnouncementController@toggleVisibility')->name('campus-tv-toggle');
 
+	Route::group(['prefix' => 'ircc'], function () {
+		Route::get('/', ['uses' => 'ircc\MainController@index', 'as' => 'ircc.main']);
+	});
+
 });
+
+
 
 
 Route::group(["prefix" => "tdot"], function () {
