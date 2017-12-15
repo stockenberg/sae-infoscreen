@@ -113,7 +113,7 @@
         },
         methods: {
             filterDepartments(id) {
-                axios.get('/api/ircc/' + id)
+                axios.get('public/api/ircc/' + id)
                     .then(res => {
                         this.companies = res.data;
                     })
