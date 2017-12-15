@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ircc;
 
+use App\Department;
 use App\IndustrialContact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,9 +16,16 @@ class MainController extends Controller
      */
     public function index()
     {
-    	$contacts = IndustrialContact::with(['departments', 'histories', 'jobs', 'students'])->get();
+    	$departments = Department::all();
 
-        return view('ircc.main', ['contacts' => $contacts]);
+    	$contacts = IndustrialContact::with([
+    		'departments',
+			'histories' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'jobs' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'students'])
+			->get();
+
+        return view('ircc.main', ['contacts' => $contacts, 'departments' => $departments]);
     }
 
     /**
@@ -27,7 +35,8 @@ class MainController extends Controller
      */
     public function create()
     {
-        //
+    	$departments = Department::all();
+        return view('ircc.create', ['departments' => $departments]);
     }
 
     /**
@@ -38,8 +47,30 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+    	$this->validate($request, [
+    		'name' => 'required',
+			'likes' => 'required',
+			'primary_contact' => 'required',
+			'last_contact' => 'required',
+			'last_contact_person' => 'required',
+
+		]);
+
+        $industrialContact = new IndustrialContact();
+
+        $industrialContact->name = $request->name;
+        $industrialContact->likes = $request->likes;
+        $industrialContact->primary_contact = $request->primary_contact;
+        $industrialContact->last_contact = $request->last_contact;
+        $industrialContact->last_contact_person = $request->last_contact_person;
+        $industrialContact->adress = $request->adress;
+
+        $industrialContact->save();
+        $industrialContact->departments()->attach($request->departments);
+
+		return redirect()->back();
+	}
 
     /**
      * Display the specified resource.

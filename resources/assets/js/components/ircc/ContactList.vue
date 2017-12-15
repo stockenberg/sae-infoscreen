@@ -2,12 +2,9 @@
     <div class="" id="">
         <h4>Sortierungen</h4>
         <nav>
-            <a href="" class=""><img :src="iconPath + 'web.png'" height="30px" alt=""></a>
-            <a href="" class=""><img :src="iconPath + 'audio.png'" height="30px" alt=""></a>
-            <a href="" class=""><img :src="iconPath + 'film.png'" height="30px" alt=""></a>
-            <a href="" class=""><img :src="iconPath + 'game.png'" height="30px" alt=""></a>
-            <a href="" class=""><img :src="iconPath + 'cross.png'" height="30px" alt=""></a>
-            <a href="" class=""><img :src="iconPath + 'animation.png'" height="30px" alt=""></a>
+            <a href="" @click.prevent="filterDepartments(department.id)" v-for="department in departments" class=""><img
+                    :src="iconPath + department.name + '.png'" height="30px" alt=""></a>
+
         </nav>
         <!-- Button trigger modal -->
         <hr>
@@ -55,9 +52,7 @@
                                 <div class="panel panel-default col col-md-6">
                                     <div class="panel-body">
                                         <h4 class="text-info">Adresse</h4>
-                                        <p>
-                                            {{item.adress}}
-                                        </p>
+                                        <nl2br tag="p" :text="item.adress"></nl2br>
                                         <hr>
                                         <h4 class="text-info">Kontakthistorie</h4>
                                         <ul>
@@ -78,7 +73,7 @@
                                         <hr>
                                         <h4 class="text-info">Aktuelle Job Angebote</h4>
                                         <ul>
-                                            <li v-for="job in item.jobs"><span class="label label-success">{{job.date}}</span>
+                                            <li v-for="job in item.jobs"><span class="label label-success">{{job.created_at}}</span>
                                                 {{job.description}}
                                             </li>
                                         </ul>
@@ -98,6 +93,7 @@
 
 <script>
     import ContactListSettings from './ContactListSettings.vue';
+    import Nl2br from 'vue-nl2br';
 
     export default {
         data() {
@@ -113,8 +109,13 @@
                 return this.imgPath + '/fb_icons/';
             }
         },
-        components: {ContactListSettings},
-        props: ['imgPath', 'items']
+        methods: {
+            filterDepartments(id) {
+                console.log(id);
+            }
+        },
+        components: {ContactListSettings, Nl2br},
+        props: ['imgPath', 'items', 'departments']
     }
 </script>
 
