@@ -1961,7 +1961,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filterDepartments: function filterDepartments(id) {
             var _this = this;
 
-            axios.get('public/api/ircc/' + id).then(function (res) {
+            axios.get('/api/ircc/' + id).then(function (res) {
                 _this.companies = res.data;
             });
         }
