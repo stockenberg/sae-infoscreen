@@ -7,3 +7,18 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+.overview-nav{
+  a{
+    margin: 10px;
+    font-size: 24px;
+  }
+}
+
+.box{
+  text-align: center;
+  i{
+    font-size: 50px;
+  }
+}

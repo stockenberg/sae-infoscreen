@@ -54,7 +54,7 @@ class HomeController extends Controller
         $supis = ["film", "web", "audio", "game", "gameprog"];
         $keystaff = ["manager", "filmhi", "coordinator", "audiohi", "webhi", "crossmediahi", "accademiccoordinator", "torstenw"];
 
-        return view("welcome", [
+        return view("infoscreen", [
             "lectures" => $lectures,
             "keystaff" => $keystaff,
             "supis" => $supis,
