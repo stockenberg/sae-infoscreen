@@ -19,3 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/ircc/{id}',
 	['uses' => 'ircc\MainController@indexDepartments', 'as' => 'ircc.filtered']);
+
+Route::post('/ircc/addHistory', [
+	'uses' => 'ircc\MainController@addHistory', 'as' => 'ircc.add.history'
+]);
+
+Route::post('/ircc/addJob', [
+	'uses' => 'ircc\MainController@addJob', 'as' => 'ircc.add.job'
+]);
+
+Route::post('/ircc/addStudent', [
+	'uses' => 'ircc\MainController@addStudent', 'as' => 'ircc.add.student'
+]);

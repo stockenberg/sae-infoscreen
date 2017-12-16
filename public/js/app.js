@@ -2270,19 +2270,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
+
+
+var apiPath = '/api/';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             active: 0,
-            companies: null
+            companies: null,
+            history: {
+                active: null,
+                content: null
+            },
+            student: {
+                active: null,
+                content: null
+            },
+            job: {
+                active: null,
+                content: null
+            }
+
         };
     },
     mounted: function mounted() {
-        console.log('component ready..');
         this.companies = this.items;
     },
 
@@ -2295,8 +2353,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filterDepartments: function filterDepartments(id) {
             var _this = this;
 
-            axios.get('/api/ircc/' + id).then(function (res) {
+            axios.get(apiPath + 'ircc/' + id).then(function (res) {
                 _this.companies = res.data;
+            });
+        },
+        addHistory: function addHistory(id) {
+            var _this2 = this;
+
+            axios.post(apiPath + 'ircc/addHistory', this.history).then(function (res) {
+                for (var i = 0; i < _this2.companies.length; i++) {
+                    if (_this2.companies[i].id === id) {
+                        _this2.companies[i] = res.data;
+                    }
+                }
+                _this2.history.active = null;
+                _this2.history.content = null;
+            });
+        },
+        addJob: function addJob(id) {
+            var _this3 = this;
+
+            axios.post(apiPath + 'ircc/addJob', this.job).then(function (res) {
+                for (var i = 0; i < _this3.companies.length; i++) {
+                    if (_this3.companies[i].id === id) {
+                        _this3.companies[i] = res.data;
+                    }
+                }
+                _this3.job.active = null;
+                _this3.job.content = null;
+            });
+        },
+        addStudent: function addStudent(id) {
+            var _this4 = this;
+
+            axios.post(apiPath + 'ircc/addStudent', this.student).then(function (res) {
+                for (var i = 0; i < _this4.companies.length; i++) {
+                    if (_this4.companies[i].id === id) {
+                        _this4.companies[i] = res.data;
+                    }
+                }
+                _this4.student.active = null;
+                _this4.student.content = null;
             });
         }
     },
@@ -32473,11 +32570,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": ""
-    }
-  }, [_c('h4', [_vm._v("Sortierungen")]), _vm._v(" "), _c('nav', _vm._l((_vm.departments), function(department) {
+  return _c('div', {}, [_c('h4', [_vm._v("Sortierungen")]), _vm._v(" "), _c('nav', _vm._l((_vm.departments), function(department) {
     return _c('a', {
       attrs: {
         "href": ""
@@ -32551,9 +32644,64 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h4', {
       staticClass: "text-info"
-    }, [_vm._v("Kontakthistorie")]), _vm._v(" "), _c('ul', _vm._l((item.histories), function(entry) {
-      return _c('li', [_vm._v(_vm._s(entry.entry))])
-    }))], 1)]), _vm._v(" "), _c('div', {
+    }, [_vm._v("Kontakthistorie")]), _vm._v(" "), _c('ul', {
+      staticClass: "list-group"
+    }, [_c('li', {
+      staticClass: "list-group-item text-center"
+    }, [(_vm.history.active === null) ? _c('button', {
+      staticClass: "btn btn-info",
+      on: {
+        "click": function($event) {
+          _vm.history.active = item.id
+        }
+      }
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-plus-sign",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v(" Eintrag hinzufügen\n                                            ")]) : _vm._e(), _vm._v(" "), (_vm.history.active === item.id) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.history.content),
+        expression: "history.content"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        "type": "text",
+        "autofocus": "",
+        "name": "",
+        "aria-describedby": "helpId",
+        "placeholder": ""
+      },
+      domProps: {
+        "value": (_vm.history.content)
+      },
+      on: {
+        "keyup": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+          _vm.addHistory(item.id)
+        },
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          _vm.$set(_vm.history, "content", $event.target.value)
+        }
+      }
+    }), _vm._v(" "), _c('small', {
+      staticClass: "form-text text-muted",
+      attrs: {
+        "id": "helpId"
+      }
+    }, [_vm._v("Enter zum speichern")])]) : _vm._e()]), _vm._v(" "), _vm._l((item.histories), function(entry) {
+      return _c('li', {
+        staticClass: "list-group-item"
+      }, [_c('span', {
+        staticClass: "label label-info pull-right"
+      }, [_vm._v(_vm._s(entry.created_at))]), _vm._v("\n                                            " + _vm._s(entry.entry))])
+    })], 2)], 1)]), _vm._v(" "), _c('div', {
       staticClass: "panel panel-default col col-md-6"
     }, [_c('div', {
       staticClass: "panel-body"
@@ -32561,15 +32709,123 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "text-info"
     }, [_vm._v("Letzter Kontakt")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(item.last_contact_person))]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h4', {
       staticClass: "text-info"
-    }, [_vm._v("Studenten bei der Firma")]), _vm._v(" "), _c('ul', _vm._l((item.students), function(student) {
-      return _c('li', [_vm._v(_vm._s(student.name))])
-    })), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h4', {
+    }, [_vm._v("Studenten bei der Firma")]), _vm._v(" "), _c('ul', {
+      staticClass: "list-group"
+    }, [_c('li', {
+      staticClass: "list-group-item text-center"
+    }, [(_vm.student.active === null) ? _c('button', {
+      staticClass: "btn btn-info",
+      on: {
+        "click": function($event) {
+          _vm.student.active = item.id
+        }
+      }
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-plus-sign",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v(" Eintrag hinzufügen\n                                            ")]) : _vm._e(), _vm._v(" "), (_vm.student.active === item.id) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.student.content),
+        expression: "student.content"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        "type": "text",
+        "autofocus": "",
+        "name": "",
+        "aria-describedby": "helpId",
+        "placeholder": ""
+      },
+      domProps: {
+        "value": (_vm.student.content)
+      },
+      on: {
+        "keyup": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+          _vm.addStudent(item.id)
+        },
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          _vm.$set(_vm.student, "content", $event.target.value)
+        }
+      }
+    }), _vm._v(" "), _c('small', {
+      staticClass: "form-text text-muted",
+      attrs: {
+        "id": ""
+      }
+    }, [_vm._v("Enter zum speichern")])]) : _vm._e()]), _vm._v(" "), _vm._l((item.students), function(student) {
+      return _c('li', {
+        staticClass: "list-group-item"
+      }, [_c('span', {
+        staticClass: "label label-info pull-right"
+      }, [_vm._v(_vm._s(student.created_at))]), _vm._v("\n                                            " + _vm._s(student.name))])
+    })], 2), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h4', {
       staticClass: "text-info"
-    }, [_vm._v("Aktuelle Job Angebote")]), _vm._v(" "), _c('ul', _vm._l((item.jobs), function(job) {
-      return _c('li', [_c('span', {
-        staticClass: "label label-success"
+    }, [_vm._v("Gesuche und Jobs")]), _vm._v(" "), _c('ul', {
+      staticClass: "list-group"
+    }, [_c('li', {
+      staticClass: "list-group-item text-center"
+    }, [(_vm.job.active === null) ? _c('button', {
+      staticClass: "btn btn-info",
+      on: {
+        "click": function($event) {
+          _vm.job.active = item.id
+        }
+      }
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-plus-sign",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }), _vm._v(" Eintrag hinzufügen\n                                            ")]) : _vm._e(), _vm._v(" "), (_vm.job.active === item.id) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.job.content),
+        expression: "job.content"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        "type": "text",
+        "autofocus": "",
+        "name": "",
+        "aria-describedby": "helpId",
+        "placeholder": ""
+      },
+      domProps: {
+        "value": (_vm.job.content)
+      },
+      on: {
+        "keyup": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+          _vm.addJob(item.id)
+        },
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          _vm.$set(_vm.job, "content", $event.target.value)
+        }
+      }
+    }), _vm._v(" "), _c('small', {
+      staticClass: "form-text text-muted",
+      attrs: {
+        "id": ""
+      }
+    }, [_vm._v("Enter zum speichern")])]) : _vm._e()]), _vm._v(" "), _vm._l((item.jobs), function(job) {
+      return _c('li', {
+        staticClass: "list-group-item"
+      }, [_c('span', {
+        staticClass: "label label-info pull-right"
       }, [_vm._v(_vm._s(job.created_at))]), _vm._v("\n                                            " + _vm._s(job.description) + "\n                                        ")])
-    }))])])])])]) : _vm._e()]
+    })], 2)])])])])]) : _vm._e()]
   })], 2)])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("Likes")]), _vm._v(" "), _c('th', [_vm._v("Company")]), _vm._v(" "), _c('th', {

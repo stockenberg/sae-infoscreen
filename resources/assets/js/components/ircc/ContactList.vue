@@ -1,5 +1,5 @@
 <template>
-    <div class="" id="">
+    <div class="" >
         <h4>Sortierungen</h4>
         <nav>
             <a href="" @click.prevent="filterDepartments(department.id)" v-for="department in departments" class=""><img
@@ -55,9 +55,23 @@
                                         <nl2br tag="p" :text="item.adress"></nl2br>
                                         <hr>
                                         <h4 class="text-info">Kontakthistorie</h4>
-                                        <ul>
-                                            <li v-for="entry in item.histories">{{entry.entry}}</li>
+                                        <ul class="list-group">
+                                            <li class="list-group-item text-center">
+                                                <button v-if="history.active === null" @click="history.active = item.id" class="btn btn-info"><span
+                                                        class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Eintrag hinzufügen
+                                                </button>
+                                                <div class="form-group" v-if="history.active === item.id">
+                                                    <input type="text" class="form-control" autofocus name="" v-model="history.content" aria-describedby="helpId"
+                                                           placeholder="" @keyup.enter="addHistory(item.id)">
+                                                    <small id="helpId" class="form-text text-muted">Enter zum speichern</small>
+
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item" v-for="entry in item.histories">
+                                                <span class="label label-info pull-right">{{entry.created_at}}</span>
+                                                {{entry.entry}}</li>
                                         </ul>
+
                                     </div>
                                 </div>
 
@@ -67,13 +81,42 @@
                                         <p>{{item.last_contact_person}}</p>
                                         <hr>
                                         <h4 class="text-info">Studenten bei der Firma</h4>
-                                        <ul>
-                                            <li v-for="student in item.students">{{student.name}}</li>
+                                        <ul class="list-group">
+                                            <li class="list-group-item text-center">
+                                                <button v-if="student.active === null" @click="student.active = item.id" class="btn btn-info"><span
+                                                        class="glyphicon glyphicon-plus-sign"
+                                                        aria-hidden="true"></span> Eintrag hinzufügen
+                                                </button>
+
+                                                <div class="form-group" v-if="student.active === item.id">
+                                                    <input type="text" class="form-control" autofocus name="" v-model="student.content" aria-describedby="helpId"
+                                                           placeholder="" @keyup.enter="addStudent(item.id)">
+                                                    <small id="" class="form-text text-muted">Enter zum speichern</small>
+
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item" v-for="student in item.students">
+                                                <span class="label label-info pull-right">{{student.created_at}}</span>
+                                                {{student.name}}</li>
                                         </ul>
                                         <hr>
-                                        <h4 class="text-info">Aktuelle Job Angebote</h4>
-                                        <ul>
-                                            <li v-for="job in item.jobs"><span class="label label-success">{{job.created_at}}</span>
+                                        <h4 class="text-info">Gesuche und Jobs</h4>
+                                        <ul class="list-group">
+                                            <li class="list-group-item text-center">
+                                                <button v-if="job.active === null" @click="job.active = item.id" class="btn btn-info"><span
+                                                        class="glyphicon glyphicon-plus-sign"
+                                                        aria-hidden="true"></span> Eintrag hinzufügen
+                                                </button>
+
+                                                <div class="form-group" v-if="job.active === item.id">
+                                                    <input type="text" class="form-control" autofocus name="" v-model="job.content" aria-describedby="helpId"
+                                                           placeholder="" @keyup.enter="addJob(item.id)">
+                                                    <small id="" class="form-text text-muted">Enter zum speichern</small>
+
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item" v-for="job in item.jobs"><span
+                                                    class="label label-info pull-right">{{job.created_at}}</span>
                                                 {{job.description}}
                                             </li>
                                         </ul>
@@ -92,18 +135,33 @@
 </template>
 
 <script>
+
     import ContactListSettings from './ContactListSettings.vue';
     import Nl2br from 'vue-nl2br';
+
+    let apiPath = '/api/';
 
     export default {
         data() {
             return {
                 active: 0,
-                companies: null
+                companies: null,
+                history: {
+                    active: null,
+                    content: null
+                },
+                student: {
+                    active: null,
+                    content: null
+                },
+                job: {
+                    active: null,
+                    content: null
+                }
+
             }
         },
         mounted() {
-            console.log('component ready..');
             this.companies = this.items;
         },
         computed: {
@@ -113,11 +171,47 @@
         },
         methods: {
             filterDepartments(id) {
-                axios.get('/api/ircc/' + id)
+                axios.get(apiPath + 'ircc/' + id)
                     .then(res => {
                         this.companies = res.data;
                     })
-            }
+            },
+            addHistory(id) {
+                axios.post(apiPath + 'ircc/addHistory', this.history)
+                    .then(res => {
+                        for(var i = 0; i < this.companies.length; i++){
+                            if(this.companies[i].id === id){
+                                this.companies[i] = res.data;
+                            }
+                        }
+                        this.history.active = null;
+                        this.history.content = null;
+                    });
+            },
+            addJob(id) {
+                axios.post(apiPath + 'ircc/addJob', this.job)
+                    .then(res => {
+                        for(var i = 0; i < this.companies.length; i++){
+                            if(this.companies[i].id === id){
+                                this.companies[i] = res.data;
+                            }
+                        }
+                        this.job.active = null;
+                        this.job.content = null;
+                    });
+            },
+            addStudent(id) {
+                axios.post(apiPath + 'ircc/addStudent', this.student)
+                    .then(res => {
+                        for(var i = 0; i < this.companies.length; i++){
+                            if(this.companies[i].id === id){
+                                this.companies[i] = res.data;
+                            }
+                        }
+                        this.student.active = null;
+                        this.student.content = null;
+                    });
+            },
         },
         components: {ContactListSettings, Nl2br},
         props: ['imgPath', 'items', 'departments']
