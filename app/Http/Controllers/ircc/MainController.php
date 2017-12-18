@@ -26,7 +26,7 @@ class MainController extends Controller
 
 		$contacts = IndustrialContact::with([
 			'departments' => function ($query) {
-				$query->orderBy('rating', 'DESC');
+				$query->orderBy('likes', 'DESC');
 			},
 			'histories'   => function ($query) {
 				$query->orderBy('created_at', 'DESC');
