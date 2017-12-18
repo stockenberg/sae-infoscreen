@@ -2318,7 +2318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var apiPath = '/api/';
+var apiPath = '/public/api/';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2353,11 +2353,7 @@ var apiPath = '/api/';
         filterDepartments: function filterDepartments(id) {
             var _this = this;
 
-<<<<<<< HEAD
-            axios.get('//10.7.1.1/sae-infoscreen-git/public/api/ircc/' + id).then(function (res) {
-=======
             axios.get(apiPath + 'ircc/' + id).then(function (res) {
->>>>>>> ircc-tool
                 _this.companies = res.data;
             });
         },
