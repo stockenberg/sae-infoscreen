@@ -139,7 +139,7 @@
     import ContactListSettings from './ContactListSettings.vue';
     import Nl2br from 'vue-nl2br';
 
-    let apiPath = '/api/';
+    let apiPath = '/public/api/';
 
     export default {
         data() {
@@ -171,11 +171,8 @@
         },
         methods: {
             filterDepartments(id) {
-<<<<<<< HEAD
-                axios.get('//10.7.1.1/sae-infoscreen-git/public/api/ircc/' + id)
-=======
+
                 axios.get(apiPath + 'ircc/' + id)
->>>>>>> ircc-tool
                     .then(res => {
                         this.companies = res.data;
                     })
