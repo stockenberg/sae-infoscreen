@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\ircc;
 
 use App\Department;
+use App\History;
 use App\IndustrialContact;
+use App\Job;
+use App\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,6 +31,54 @@ class MainController extends Controller
 			->get();
 
         return view('ircc.main', ['contacts' => $contacts, 'departments' => $departments]);
+    }
+
+	public function addHistory(Request $request)
+	{
+		$entry = new History();
+
+		$entry->entry = $request->input('content');
+		$entry->industrial_contact_id = $request->input('active');
+		$entry->save();
+
+		return $this->findIndustrialContactById($request->input('active'));
+
+    }
+
+	public function addJob(Request $request)
+	{
+		$entry = new Job();
+
+		$entry->description = $request->input('content');
+		$entry->industrial_contact_id = $request->input('active');
+		$entry->save();
+
+		return $this->findIndustrialContactById($request->input('active'));
+
+	}
+
+	public function addStudent(Request $request)
+	{
+		$entry = new Student();
+
+		$entry->name = $request->input('content');
+		$entry->industrial_contact_id = $request->input('active');
+		$entry->save();
+
+		return $this->findIndustrialContactById($request->input('active'));
+
+	}
+
+	public function findIndustrialContactById($id)
+	{
+		$contacts = IndustrialContact::with([
+			'departments',
+			'histories' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'jobs' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'students'])
+			->find($id);
+
+		return $contacts;
     }
 
 	public function indexDepartments($id)
