@@ -4947,7 +4947,13 @@ exports = module.exports = __webpack_require__(8)();
 exports.push([module.i, "\nh4[data-v-13062797] {\n  margin-bottom: 20px;\n}\n.fb img[data-v-13062797] {\n  padding: 2px;\n  height: 30px;\n  width: auto;\n}\nnav a[data-v-13062797] {\n  margin: 10px;\n}\n.toggle-details[data-v-13062797] {\n  padding: 10px;\n  cursor: pointer;\n}\n.toggle-details[data-v-13062797]:hover {\n    color: #333;\n}\n", ""]);
 
 /***/ }),
-/* 37 */,
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+exports.push([module.i, "\n.fb {\n  margin-left: 30px;\n}\n.fb img {\n    padding: 2px;\n    height: 30px;\n    width: auto;\n}\n", ""]);
+
+/***/ }),
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32595,7 +32601,7 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(62)
+__webpack_require__(49)
 
 var Component = __webpack_require__(10)(
   /* script */
@@ -32695,7 +32701,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "button",
         "data-toggle": "modal",
-        "data-target": "#modelId"
+        "data-target": item.id
       }
     }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('contact-list-settings', {
       attrs: {
@@ -32926,7 +32932,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "modal fade",
     attrs: {
-      "id": "modelId",
+      "id": _vm.item.id,
       "tabindex": "-1",
       "role": "dialog",
       "aria-labelledby": "modelTitleId",
@@ -33382,7 +33388,32 @@ if(false) {
 }
 
 /***/ }),
-/* 49 */,
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(37);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("cdfe8084", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-e00c014c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactListSettings.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-e00c014c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactListSettings.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 50 */
 /***/ (function(module, exports) {
 
@@ -44226,46 +44257,6 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
-
-/***/ }),
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-exports.push([module.i, "\n.fb {\n  margin-left: 30px;\n}\n.fb img {\n    padding: 2px;\n    height: 30px;\n    width: auto;\n}\n", ""]);
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(61);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(11)("cdfe8084", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-e00c014c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactListSettings.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-e00c014c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactListSettings.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ })
 /******/ ]);

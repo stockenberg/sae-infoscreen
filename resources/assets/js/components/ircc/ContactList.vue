@@ -40,7 +40,7 @@
                             {{item.last_contact}}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" :data-target="item.id">
                                 Edit
                             </button>
                             <contact-list-settings :item="item" :apiPath="apiPath" :path="iconPath" :departments="departments"></contact-list-settings>
