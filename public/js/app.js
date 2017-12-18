@@ -32701,7 +32701,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "button",
         "data-toggle": "modal",
-        "data-target": "#modelId"
+        "data-target": item.id
       }
     }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('contact-list-settings', {
       attrs: {
@@ -32932,7 +32932,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "modal fade",
     attrs: {
-      "id": "modelId",
+      "id": _vm.item.id,
       "tabindex": "-1",
       "role": "dialog",
       "aria-labelledby": "modelTitleId",
