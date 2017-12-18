@@ -43,7 +43,7 @@
                             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
                                 Edit
                             </button>
-                            <contact-list-settings :id="item.id"></contact-list-settings>
+                            <contact-list-settings :item="item"></contact-list-settings>
                         </td>
                     </tr>
                     <tr v-if="active === item.id">
