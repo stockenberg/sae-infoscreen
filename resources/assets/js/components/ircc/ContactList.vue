@@ -140,7 +140,7 @@
     import Nl2br from 'vue-nl2br';
     import StarRating from 'vue-star-rating';
 
-    let apiPath = '/api/';
+    let apiPath = '/public/api/';
 
     export default {
         data() {
