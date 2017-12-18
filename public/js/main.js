@@ -10,7 +10,7 @@ $(document).ready(function () {
             again = false;
             $.ajax({
                 method: "GET",
-                url: "http://192.168.0.1/sae-bewertungstool/get.php",
+                url: "http://10.7.1.1/sae-bewertungstool/get.php",
                 data: {
                     date: $(this).attr("data-date"),
                     evaluation: $(this).attr("data-eval"),
