@@ -139,7 +139,7 @@
     import ContactListSettings from './ContactListSettings.vue';
     import Nl2br from 'vue-nl2br';
 
-    let apiPath = '/public/api/';
+    let apiPath = '//10.7.1.1/sae-infoscreen-git/public/api/';
 
     export default {
         data() {

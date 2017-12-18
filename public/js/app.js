@@ -2318,7 +2318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var apiPath = '/public/api/';
+var apiPath = '//10.7.1.1/sae-infoscreen-git/public/api/';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
