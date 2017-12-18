@@ -140,7 +140,7 @@
     import Nl2br from 'vue-nl2br';
     import StarRating from 'vue-star-rating';
 
-    let apiPath = '/public/api/';
+    let apiPath = '/sae-infoscreen-git/public/api/';
 
     export default {
         data() {
