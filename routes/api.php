@@ -31,3 +31,7 @@ Route::post('/ircc/addJob', [
 Route::post('/ircc/addStudent', [
 	'uses' => 'ircc\MainController@addStudent', 'as' => 'ircc.add.student'
 ]);
+
+Route::post('/ircc/updateContact', [
+	'uses' => 'ircc\MainController@updateContact', 'as' => 'ircc.update.contact'
+]);

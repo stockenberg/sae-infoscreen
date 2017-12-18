@@ -26,4 +26,14 @@ class IndustrialContact extends Model
 	{
 		return $this->hasMany(Job::class);
 	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		return date('d.m.y - H:i', strtotime($value));
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		return date('d.m.y - H:i', strtotime($value));
+	}
 }

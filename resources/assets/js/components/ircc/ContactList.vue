@@ -25,7 +25,7 @@
                 <template v-for="item in companies">
                     <tr>
                         <td scope="row">
-                            <star-rating v-model="item.likes" :star-size="20" :show-rating="false" :read-only="true"></star-rating>
+                            <star-rating v-model.number="item.likes" :star-size="20" :show-rating="false" :read-only="true"></star-rating>
                         </td>
                         <td>
                             <strong class="toggle-details" @click="active = (active !== item.id) ? item.id : null">{{item.name}}</strong>
@@ -43,7 +43,7 @@
                             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
                                 Edit
                             </button>
-                            <contact-list-settings :item="item"></contact-list-settings>
+                            <contact-list-settings :item="item" :apiPath="apiPath" :path="iconPath" :departments="departments"></contact-list-settings>
                         </td>
                     </tr>
                     <tr v-if="active === item.id">
@@ -140,7 +140,7 @@
     import Nl2br from 'vue-nl2br';
     import StarRating from 'vue-star-rating';
 
-    let apiPath = '//10.7.1.1/sae-infoscreen-git/public/api/';
+    let apiPath = '/api/';
 
     export default {
         data() {
@@ -158,7 +158,8 @@
                 job: {
                     active: null,
                     content: null
-                }
+                },
+                apiPath: apiPath
 
             }
         },

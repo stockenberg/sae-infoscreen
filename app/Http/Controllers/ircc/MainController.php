@@ -33,6 +33,22 @@ class MainController extends Controller
         return view('ircc.main', ['contacts' => $contacts, 'departments' => $departments]);
     }
 
+	public function updateContact(Request $request)
+	{
+		$contact = IndustrialContact::find($request->item['id']);
+
+		$contact->likes = $request['item']['likes'];
+		$contact->name = $request['item']['name'];
+		$contact->primary_contact = $request['item']['primary_contact'];
+		$contact->last_contact = $request['item']['last_contact'];
+		$contact->last_contact_person = $request['item']['last_contact_person'];
+		$contact->adress = $request['item']['adress'];
+
+		$contact->save();
+
+		$contact->departments()->sync($request['sync']);
+	}
+
 	public function addHistory(Request $request)
 	{
 		$entry = new History();
