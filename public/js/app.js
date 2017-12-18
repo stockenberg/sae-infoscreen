@@ -2314,7 +2314,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -4944,7 +4943,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)();
-exports.push([module.i, "\nh4[data-v-13062797] {\n  margin-bottom: 20px;\n}\n.fb img[data-v-13062797] {\n  padding: 2px;\n  height: 30px;\n  width: auto;\n}\nnav a[data-v-13062797] {\n  margin: 10px;\n}\n.toggle-details[data-v-13062797] {\n  padding: 10px;\n  cursor: pointer;\n}\n.toggle-details[data-v-13062797]:hover {\n    color: #333;\n}\n", ""]);
+exports.push([module.i, "\nh4[data-v-13062797] {\n  margin-bottom: 20px;\n}\n.fb img[data-v-13062797] {\n  padding: 2px;\n  height: 30px;\n  width: auto;\n}\nnav a[data-v-13062797] {\n  margin: 10px;\n}\n.toggle-details[data-v-13062797] {\n  padding: 10px;\n  cursor: pointer;\n}\n.toggle-details[data-v-13062797]:hover {\n    color: #333;\n}\n.settings[data-v-13062797] {\n  font-size: 22px;\n  cursor: pointer;\n}\n", ""]);
 
 /***/ }),
 /* 37 */
@@ -32696,14 +32695,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           "alt": ""
         }
       })
-    })), _vm._v(" "), _c('td', [_vm._v("\n                        " + _vm._s(item.primary_contact) + "\n                    ")]), _vm._v(" "), _c('td', [_vm._v("\n                        " + _vm._s(item.last_contact) + "\n                    ")]), _vm._v(" "), _c('td', [_c('button', {
-      staticClass: "btn btn-primary btn-lg",
+    })), _vm._v(" "), _c('td', [_vm._v("\n                        " + _vm._s(item.primary_contact) + "\n                    ")]), _vm._v(" "), _c('td', [_vm._v("\n                        " + _vm._s(item.last_contact) + "\n                    ")]), _vm._v(" "), _c('td', [_c('span', {
+      staticClass: "glyphicon glyphicon-cog settings",
       attrs: {
-        "type": "button",
+        "aria-hidden": "true",
         "data-toggle": "modal",
         "data-target": '#modal_' + item.id
       }
-    }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('contact-list-settings', {
+    }), _vm._v(" "), _c('contact-list-settings', {
       attrs: {
         "item": item,
         "apiPath": _vm.apiPath,

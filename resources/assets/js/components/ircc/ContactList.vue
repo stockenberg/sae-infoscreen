@@ -40,9 +40,8 @@
                             {{item.last_contact}}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" :data-target="'#modal_' + item.id">
-                                Edit
-                            </button>
+                            <span class="glyphicon glyphicon-cog settings" aria-hidden="true" data-toggle="modal" :data-target="'#modal_' + item.id"></span>
+
                             <contact-list-settings :item="item" :apiPath="apiPath" :path="iconPath" :departments="departments"></contact-list-settings>
                         </td>
                     </tr>
@@ -246,5 +245,10 @@
         &:hover {
             color: #333;
         }
+    }
+
+    .settings{
+        font-size: 22px;
+        cursor: pointer;
     }
 </style>
