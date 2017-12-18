@@ -25,7 +25,7 @@
                 <template v-for="item in companies">
                     <tr>
                         <td scope="row">
-                            {{item.likes}}
+                            <star-rating v-model="item.likes" :star-size="20" :show-rating="false" :read-only="true"></star-rating>
                         </td>
                         <td>
                             <strong class="toggle-details" @click="active = (active !== item.id) ? item.id : null">{{item.name}}</strong>
@@ -138,6 +138,7 @@
 
     import ContactListSettings from './ContactListSettings.vue';
     import Nl2br from 'vue-nl2br';
+    import StarRating from 'vue-star-rating';
 
     let apiPath = '//10.7.1.1/sae-infoscreen-git/public/api/';
 
@@ -214,7 +215,7 @@
                     });
             },
         },
-        components: {ContactListSettings, Nl2br},
+        components: {ContactListSettings, Nl2br, StarRating},
         props: ['imgPath', 'items', 'departments']
     }
 </script>
