@@ -8,7 +8,7 @@
         </nav>
         <!-- Button trigger modal -->
         <hr>
-        <h3 class="page-header">Industriepartner</h3>
+        <h3 class="page-header">Industriepartner ({{ companies.length }})</h3>
         <div class="table-responsive">
             <table class="table">
                 <thead>

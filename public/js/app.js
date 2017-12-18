@@ -32657,7 +32657,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })])
   })), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h3', {
     staticClass: "page-header"
-  }, [_vm._v("Industriepartner")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Industriepartner (" + _vm._s(_vm.companies.length) + ")")]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive"
   }, [_c('table', {
     staticClass: "table"
