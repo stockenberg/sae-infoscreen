@@ -32701,7 +32701,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "button",
         "data-toggle": "modal",
-        "data-target": item.id
+        "data-target": '#' + item.id
       }
     }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('contact-list-settings', {
       attrs: {
