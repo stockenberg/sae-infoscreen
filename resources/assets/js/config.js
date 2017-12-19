@@ -1,1 +1,1 @@
-window.apiPath = '/sae-infoscreen-git/public/api/';
+window.apiPath = '/api/';
