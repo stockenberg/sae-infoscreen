@@ -8,7 +8,7 @@
         </nav>
         <!-- Button trigger modal -->
         <hr>
-        <h3 class="page-header">Industriepartner ({{ companies.length }})</h3>
+        <h3 class="page-header">Industriepartner ({{ items.length }})</h3>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -139,7 +139,7 @@
     import Nl2br from 'vue-nl2br';
     import StarRating from 'vue-star-rating';
 
-    let apiPath = '/sae-infoscreen-git/public/api/';
+
 
     export default {
         data() {

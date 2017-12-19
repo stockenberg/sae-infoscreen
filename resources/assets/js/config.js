@@ -1,0 +1,1 @@
+window.apiPath = '/sae-infoscreen-git/public/api/';
