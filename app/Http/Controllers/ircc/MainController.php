@@ -28,7 +28,7 @@ class MainController extends Controller
 			'histories' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
 			'jobs' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
 			'students'])
-			->orderBy('updated_at', 'DESC')
+			->orderBy('likes', 'DESC')
 			->get();
 
         return view('ircc.main', ['contacts' => $contacts, 'departments' => $departments]);
