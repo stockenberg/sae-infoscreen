@@ -13,12 +13,13 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
+    	/*
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('entry');
             $table->integer('industrial_contact_id');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -28,6 +29,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        //Schema::dropIfExists('histories');
     }
 }

@@ -12,13 +12,13 @@ class CreateJobsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {/*
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('description');
 			$table->integer('industrial_contact_id');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs');
+        //Schema::dropIfExists('jobs');
     }
 }

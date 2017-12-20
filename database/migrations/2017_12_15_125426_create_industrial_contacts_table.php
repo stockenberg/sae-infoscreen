@@ -13,6 +13,7 @@ class CreateIndustrialContactsTable extends Migration
      */
     public function up()
     {
+    	/*
         Schema::create('industrial_contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("likes");
@@ -22,7 +23,7 @@ class CreateIndustrialContactsTable extends Migration
             $table->string('last_contact_person');
             $table->text('adress');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -32,6 +33,6 @@ class CreateIndustrialContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('industrial_contacts');
+        //Schema::dropIfExists('industrial_contacts');
     }
 }

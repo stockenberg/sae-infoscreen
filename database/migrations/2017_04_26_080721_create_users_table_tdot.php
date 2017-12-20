@@ -13,6 +13,7 @@ class CreateUsersTableTdot extends Migration
      */
     public function up()
     {
+    	/*
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
@@ -20,6 +21,7 @@ class CreateUsersTableTdot extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+    	*/
     }
 
     /**
@@ -29,6 +31,6 @@ class CreateUsersTableTdot extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+       // Schema::drop('users');
     }
 }

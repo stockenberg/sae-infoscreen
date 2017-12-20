@@ -13,12 +13,14 @@ class CreateDepartmentIndustrialContactTable extends Migration
      */
     public function up()
     {
+    	/*
 		Schema::create('department_industrial_contact', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('industrial_contact_id');
 			$table->integer('department_id');
 			$table->timestamps();
 		});
+    	*/
     }
 
     /**
@@ -28,6 +30,6 @@ class CreateDepartmentIndustrialContactTable extends Migration
      */
     public function down()
     {
-		Schema::dropIfExists('department_industrial_contact');
+		//Schema::dropIfExists('department_industrial_contact');
     }
 }
