@@ -89,7 +89,7 @@
 
                                                 <div class="form-group" v-if="student.active === item.id">
                                                     <input type="text" class="form-control" autofocus name="" v-model="student.content" aria-describedby="helpId"
-                                                           placeholder="" @blur="updateStudents(item.id)" @keyup.delete="selectedStudents = null" @keyup.enter="addStudent(item.id)" @keyup="selectStudentByName()">
+                                                           placeholder="" @keyup.delete="selectedStudents = null" @keyup.enter="addStudent(item.id)" @keyup="selectStudentByName()">
                                                     <small id="" class="form-text text-muted">Enter zum speichern</small>
                                                     <autocomplete-student :students="selectedStudents" @update-students="updateStudents(item.id)" :industry-id="item.id"></autocomplete-student>
                                                 </div>
