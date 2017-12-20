@@ -89,9 +89,9 @@
 
                                                 <div class="form-group" v-if="student.active === item.id">
                                                     <input type="text" class="form-control" autofocus name="" v-model="student.content" aria-describedby="helpId"
-                                                           placeholder="" @keyup.enter="addStudent(item.id)">
+                                                           placeholder="" @blur="updateStudents(item.id)" @keyup.delete="selectedStudents = null" @keyup.enter="addStudent(item.id)" @keyup="selectStudentByName()">
                                                     <small id="" class="form-text text-muted">Enter zum speichern</small>
-
+                                                    <autocomplete-student :students="selectedStudents" @update-students="updateStudents(item.id)" :industry-id="item.id"></autocomplete-student>
                                                 </div>
                                             </li>
                                             <li class="list-group-item" v-for="student in item.students">
@@ -138,6 +138,7 @@
     import ContactListSettings from './ContactListSettings.vue';
     import Nl2br from 'vue-nl2br';
     import StarRating from 'vue-star-rating';
+    import AutocompleteStudent from './AutocompleteStudents.vue';
 
 
 
@@ -146,6 +147,7 @@
             return {
                 active: 0,
                 companies: null,
+                selectedStudents: null,
                 history: {
                     active: null,
                     content: null
@@ -202,6 +204,33 @@
                         this.job.content = null;
                     });
             },
+            selectStudentByName() {
+                if(this.student.content.length > 2){
+                    axios.get(apiPath + 'ircc/autocomplete/student?name=' + this.student.content)
+                        .then(res => {
+                            this.selectedStudents = res.data;
+                        })
+                        .catch(res => {
+                            console.log(res);
+                        });
+                }
+            },
+            updateStudents (id) {
+                axios.get(apiPath + 'ircc/company/' + id)
+                    .then(res => {
+                        for(var i = 0; i < this.companies.length; i++){
+                            if(this.companies[i].id === id){
+                                this.companies[i] = res.data;
+                            }
+                        }
+                        this.selectedStudents = null;
+                        this.student.active = null;
+                        this.student.content = null;
+                    })
+                    .catch(res => {
+
+                    })
+            },
             addStudent(id) {
                 axios.post(apiPath + 'ircc/addStudent', this.student)
                     .then(res => {
@@ -215,7 +244,7 @@
                     });
             },
         },
-        components: {ContactListSettings, Nl2br, StarRating},
+        components: {ContactListSettings, Nl2br, StarRating, AutocompleteStudent},
         props: ['imgPath', 'items', 'departments']
     }
 </script>

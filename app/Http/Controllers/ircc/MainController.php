@@ -50,6 +50,25 @@ class MainController extends Controller
 		$contact->departments()->sync($request['sync']);
 	}
 
+	public function autocompleteStudent(Request $request)
+	{
+		return Student::where('name', 'LIKE', "%{$request->name}%")->get();
+
+	}
+
+	public function associateIndustry(Request $request)
+	{
+		$student = Student::find($request->student_id);
+		$student->industrial_contact_id = $request->industry_id;
+
+		$student->save();
+	}
+
+	public function getCompany(Request $request)
+	{
+		return $this->findIndustrialContactById($request->id);
+	}
+
 	public function addHistory(Request $request)
 	{
 		$entry = new History();
@@ -76,10 +95,13 @@ class MainController extends Controller
 
 	public function addStudent(Request $request)
 	{
+
 		$entry = new Student();
 
 		$entry->name = $request->input('content');
 		$entry->industrial_contact_id = $request->input('active');
+		$entry->course = 'no-data';
+		$entry->student_number = 'no-data';
 		$entry->save();
 
 		return $this->findIndustrialContactById($request->input('active'));

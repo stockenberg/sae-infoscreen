@@ -2180,6 +2180,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_nl2br___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_nl2br__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_star_rating__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_star_rating__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue__);
 //
 //
 //
@@ -2315,6 +2317,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -2326,6 +2329,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             active: 0,
             companies: null,
+            selectedStudents: null,
             history: {
                 active: null,
                 content: null
@@ -2385,21 +2389,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.job.content = null;
             });
         },
-        addStudent: function addStudent(id) {
+        selectStudentByName: function selectStudentByName() {
             var _this4 = this;
 
-            axios.post(apiPath + 'ircc/addStudent', this.student).then(function (res) {
-                for (var i = 0; i < _this4.companies.length; i++) {
-                    if (_this4.companies[i].id === id) {
-                        _this4.companies[i] = res.data;
+            if (this.student.content.length > 2) {
+                axios.get(apiPath + 'ircc/autocomplete/student?name=' + this.student.content).then(function (res) {
+                    _this4.selectedStudents = res.data;
+                }).catch(function (res) {
+                    console.log(res);
+                });
+            }
+        },
+        updateStudents: function updateStudents(id) {
+            var _this5 = this;
+
+            axios.get(apiPath + 'ircc/company/' + id).then(function (res) {
+                for (var i = 0; i < _this5.companies.length; i++) {
+                    if (_this5.companies[i].id === id) {
+                        _this5.companies[i] = res.data;
                     }
                 }
-                _this4.student.active = null;
-                _this4.student.content = null;
+                _this5.selectedStudents = null;
+                _this5.student.active = null;
+                _this5.student.content = null;
+            }).catch(function (res) {});
+        },
+        addStudent: function addStudent(id) {
+            var _this6 = this;
+
+            axios.post(apiPath + 'ircc/addStudent', this.student).then(function (res) {
+                for (var i = 0; i < _this6.companies.length; i++) {
+                    if (_this6.companies[i].id === id) {
+                        _this6.companies[i] = res.data;
+                    }
+                }
+                _this6.student.active = null;
+                _this6.student.content = null;
             });
         }
     },
-    components: { ContactListSettings: __WEBPACK_IMPORTED_MODULE_0__ContactListSettings_vue___default.a, Nl2br: __WEBPACK_IMPORTED_MODULE_1_vue_nl2br___default.a, StarRating: __WEBPACK_IMPORTED_MODULE_2_vue_star_rating___default.a },
+    components: { ContactListSettings: __WEBPACK_IMPORTED_MODULE_0__ContactListSettings_vue___default.a, Nl2br: __WEBPACK_IMPORTED_MODULE_1_vue_nl2br___default.a, StarRating: __WEBPACK_IMPORTED_MODULE_2_vue_star_rating___default.a, AutocompleteStudent: __WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue___default.a },
     props: ['imgPath', 'items', 'departments']
 });
 
@@ -32834,10 +32863,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": (_vm.student.content)
       },
       on: {
-        "keyup": function($event) {
+        "blur": function($event) {
+          _vm.updateStudents(item.id)
+        },
+        "keyup": [function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "delete", [8, 46], $event.key)) { return null; }
+          _vm.selectedStudents = null
+        }, function($event) {
           if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
           _vm.addStudent(item.id)
-        },
+        }, function($event) {
+          _vm.selectStudentByName()
+        }],
         "input": function($event) {
           if ($event.target.composing) { return; }
           _vm.$set(_vm.student, "content", $event.target.value)
@@ -32848,7 +32885,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "id": ""
       }
-    }, [_vm._v("Enter zum speichern")])]) : _vm._e()]), _vm._v(" "), _vm._l((item.students), function(student) {
+    }, [_vm._v("Enter zum speichern")]), _vm._v(" "), _c('autocomplete-student', {
+      attrs: {
+        "students": _vm.selectedStudents,
+        "industry-id": item.id
+      },
+      on: {
+        "update-students": function($event) {
+          _vm.updateStudents(item.id)
+        }
+      }
+    })], 1) : _vm._e()]), _vm._v(" "), _vm._l((item.students), function(student) {
       return _c('li', {
         staticClass: "list-group-item"
       }, [_c('span', {
@@ -44261,6 +44308,155 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    mounted: function mounted() {
+        console.log('component ready..');
+    },
+
+    methods: {
+        associateCompany: function associateCompany(id, student_id) {
+            var _this = this;
+
+            console.log(id);
+            console.log(student_id);
+            axios.post(apiPath + 'ircc/associateIndustry', { industry_id: id, student_id: student_id }).then(function (res) {
+                _this.$emit('update-students');
+            }).catch(function (res) {});
+        }
+    },
+    props: ['students', 'industry-id']
+});
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(66)
+
+var Component = __webpack_require__(10)(
+  /* script */
+  __webpack_require__(62),
+  /* template */
+  __webpack_require__(65),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/workstation/WebProjects/sae-infoscreen/www/resources/assets/js/components/ircc/AutocompleteStudents.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AutocompleteStudents.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5cdbae37", Component.options)
+  } else {
+    hotAPI.reload("data-v-5cdbae37", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": ""
+    }
+  }, [_c('div', {
+    staticClass: "list-group"
+  }, _vm._l((_vm.students), function(student) {
+    return _c('a', {
+      staticClass: "list-group-item list-group-item-action",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.associateCompany(_vm.industryId, student.id)
+        }
+      }
+    }, [_vm._v(_vm._s(student.name) + " "), _c('small', [_vm._v(_vm._s(student.course))])])
+  }))])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5cdbae37", module.exports)
+  }
+}
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(63);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("5e482741", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-5cdbae37\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AutocompleteStudents.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-5cdbae37\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AutocompleteStudents.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

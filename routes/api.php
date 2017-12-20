@@ -32,6 +32,16 @@ Route::post('/ircc/addStudent', [
 	'uses' => 'ircc\MainController@addStudent', 'as' => 'ircc.add.student'
 ]);
 
+Route::post('/ircc/associateIndustry', [
+	'uses' => 'ircc\MainController@associateIndustry'
+]);
+
+Route::get('/ircc/company/{id}', ['uses' => 'ircc\MainController@getCompany']);
+
+
+Route::get('/ircc/autocomplete/student', ['uses' => 'ircc\MainController@autocompleteStudent']);
+
+
 Route::post('/ircc/updateContact', [
 	'uses' => 'ircc\MainController@updateContact', 'as' => 'ircc.update.contact'
 ]);
