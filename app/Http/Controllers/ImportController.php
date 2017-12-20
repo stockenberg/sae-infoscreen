@@ -90,8 +90,8 @@ class ImportController extends Controller
 
 			foreach ($header as $index => $key) {
 				$options['to_object']
-					? $temp->{trim($key)} = trim($fields[$index])
-					: $temp[trim($key)] = trim($fields[$index]);
+					? $temp->{trim($key)} = trim($fields[$index] ?? null)
+					: $temp[trim($key)] = trim($fields[$index] ?? null);
 			}
 
 			$csv[] = $temp;
