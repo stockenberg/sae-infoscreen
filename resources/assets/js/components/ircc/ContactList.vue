@@ -160,7 +160,6 @@
                     active: null,
                     content: null
                 },
-                apiPath: apiPath
 
             }
         },

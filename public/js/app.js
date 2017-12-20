@@ -2378,8 +2378,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             job: {
                 active: null,
                 content: null
-            },
-            apiPath: apiPath
+            }
 
         };
     },
@@ -2624,7 +2623,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /* 36 */
 /***/ (function(module, exports) {
 
-window.apiPath = '/api/';
+window.apiPath = '//10.7.1.1/sae-infoscreen-git/public/api/';
 
 /***/ }),
 /* 37 */
