@@ -42,7 +42,7 @@
                         <td>
                             <span class="glyphicon glyphicon-cog settings" aria-hidden="true" data-toggle="modal" :data-target="'#modal_' + item.id"></span>
 
-                            <contact-list-settings :item="item" :api-path="apiPath" :path="iconPath" :departments="departments"></contact-list-settings>
+                            <contact-list-settings :item="item" :path="iconPath" :departments="departments"></contact-list-settings>
                         </td>
                     </tr>
                     <tr v-if="active === item.id">

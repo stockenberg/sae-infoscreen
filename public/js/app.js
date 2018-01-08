@@ -2555,9 +2555,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(this.sync);
             console.log(this.item);
 
-            console.log(this.apiPath);
+            console.log(apiPath);
 
-            axios.post(this.apiPath + "ircc/updateContact", { sync: this.sync, item: this.item }).then(function (res) {
+            axios.post(apiPath + "ircc/updateContact", { sync: this.sync, item: this.item }).then(function (res) {
                 console.log(res);
             }).catch(function (res) {
                 console.log(res);
@@ -2571,7 +2571,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
 
-    props: ['item', 'path', 'departments', 'apiPath']
+    props: ['item', 'path', 'departments']
 });
 
 /***/ }),
@@ -32820,7 +32820,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }), _vm._v(" "), _c('contact-list-settings', {
       attrs: {
         "item": item,
-        "api-path": _vm.apiPath,
         "path": _vm.iconPath,
         "departments": _vm.departments
       }

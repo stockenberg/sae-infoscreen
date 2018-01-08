@@ -78,9 +78,9 @@
                 console.log(this.sync);
                 console.log(this.item);
 
-                console.log(this.apiPath);
+                console.log(apiPath);
 
-                axios.post(this.apiPath + "ircc/updateContact", {sync: this.sync, item: this.item})
+                axios.post(apiPath + "ircc/updateContact", {sync: this.sync, item: this.item})
                     .then(res => {
                         console.log(res);
                     })
@@ -97,7 +97,7 @@
                 this.sync.push(this.item.departments[i].id);
             }
         },
-        props: ['item', 'path', 'departments', 'apiPath']
+        props: ['item', 'path', 'departments']
     }
 </script>
 
