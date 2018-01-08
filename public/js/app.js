@@ -32820,7 +32820,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }), _vm._v(" "), _c('contact-list-settings', {
       attrs: {
         "item": item,
-        "apiPath": _vm.apiPath,
+        "api-path": _vm.apiPath,
         "path": _vm.iconPath,
         "departments": _vm.departments
       }
