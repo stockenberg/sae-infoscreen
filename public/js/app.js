@@ -2623,7 +2623,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /* 36 */
 /***/ (function(module, exports) {
 
-window.apiPath = '//10.7.1.1/sae-infoscreen-git/public/api/';
+window.apiPath = '/api/';
 
 /***/ }),
 /* 37 */
@@ -32959,10 +32959,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('small', {
-      staticClass: "form-text text-muted",
-      attrs: {
-        "id": ""
-      }
+      staticClass: "form-text text-muted"
     }, [_vm._v("Enter zum speichern")]), _vm._v(" "), _c('autocomplete-student', {
       attrs: {
         "students": _vm.selectedStudents,
@@ -33028,10 +33025,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('small', {
-      staticClass: "form-text text-muted",
-      attrs: {
-        "id": ""
-      }
+      staticClass: "form-text text-muted"
     }, [_vm._v("Enter zum speichern")])]) : _vm._e()]), _vm._v(" "), _vm._l((item.jobs), function(job) {
       return _c('li', {
         staticClass: "list-group-item"
