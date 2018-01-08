@@ -30,6 +30,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
