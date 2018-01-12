@@ -9,4 +9,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
+/public/js/config.js
 test/
+/public/img/keystaff
+/public/img/supervisor
