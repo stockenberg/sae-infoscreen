@@ -32794,7 +32794,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.active = (_vm.active !== item.id) ? item.id : null
         }
       }
-    }, [_vm._v(_vm._s(item.name))])]), _vm._v(" "), _c('td', {
+    }, [_vm._v(_vm._s(item.name) + " (" + _vm._s(item.histories.length) + ")")])]), _vm._v(" "), _c('td', {
       staticClass: "text-center fb"
     }, _vm._l((item.departments), function(department) {
       return _c('img', {

@@ -28,7 +28,7 @@
                             <star-rating v-model.number="item.likes" :star-size="20" :show-rating="false" :read-only="true"></star-rating>
                         </td>
                         <td>
-                            <strong class="toggle-details" @click="active = (active !== item.id) ? item.id : null">{{item.name}}</strong>
+                            <strong class="toggle-details" @click="active = (active !== item.id) ? item.id : null">{{item.name}} ({{item.histories.length}})</strong>
                         </td>
                         <td class="text-center fb">
                             <img v-for="department in item.departments" :src="iconPath + department.name + '.png'" alt="">
