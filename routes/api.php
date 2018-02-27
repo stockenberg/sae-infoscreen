@@ -17,6 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'lecturer'], function () {
+	Route::get('/refresh', 'LecturerController@refresh')->name('lecturer.refresh');
+	Route::post('/', 'LecturerController@store')->name('lecturer.store');
+	Route::delete('/{id}', 'LecturerController@destroy')->name('lecturer.delete');
+});
+
 Route::get('/ircc/{id}',
 	['uses' => 'ircc\MainController@indexDepartments', 'as' => 'ircc.filtered']);
 
