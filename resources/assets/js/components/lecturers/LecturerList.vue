@@ -44,13 +44,13 @@
         methods: {
             refreshList() {
                 this.addLecturerToggle = false;
-                axios.get(apiPath + 'admin/lecturer/refresh')
+                axios.get(apiPath + 'lecturer/refresh')
                     .then(res => {
                         this.lecturerData = res.data;
                     })
             },
             deleteLecturer(id) {
-                axios.delete(apiPath + 'admin/lecturer/' + id)
+                axios.delete(apiPath + 'lecturer/' + id)
                     .then(res => {
                         this.refreshList();
                     })
