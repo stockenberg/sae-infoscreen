@@ -63,6 +63,14 @@
                 axios.post( apiPath + 'lecturer', this.lecturer)
                     .then(res => {
                         console.log(res);
+                        this.lecturer = {
+                            firstname: null,
+                            lastname: null,
+                            departments: [],
+                            core_competence: null,
+                            lessons_held: null,
+                            additional_info: null
+                        };
                         this.$emit('lecturerSaved');
                     })
                     .catch(err => {

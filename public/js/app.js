@@ -2649,6 +2649,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post(apiPath + 'lecturer', this.lecturer).then(function (res) {
                 console.log(res);
+                _this.lecturer = {
+                    firstname: null,
+                    lastname: null,
+                    departments: [],
+                    core_competence: null,
+                    lessons_held: null,
+                    additional_info: null
+                };
                 _this.$emit('lecturerSaved');
             }).catch(function (err) {
                 console.log(err);
@@ -5319,7 +5327,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 44 */
