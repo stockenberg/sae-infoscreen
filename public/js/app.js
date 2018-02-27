@@ -44500,14 +44500,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.addLecturerToggle = false;
-            axios.get(apiPath + '/admin/lecturer/refresh').then(function (res) {
+            axios.get(apiPath + 'admin/lecturer/refresh').then(function (res) {
                 _this.lecturerData = res.data;
             });
         },
         deleteLecturer: function deleteLecturer(id) {
             var _this2 = this;
 
-            axios.delete(apiPath + '/admin/lecturer/' + id).then(function (res) {
+            axios.delete(apiPath + 'admin/lecturer/' + id).then(function (res) {
                 _this2.refreshList();
             });
         }
@@ -44737,7 +44737,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveLecturer: function saveLecturer() {
             var _this = this;
 
-            axios.post(apiPath + '/admin/lecturer', this.lecturer).then(function (res) {
+            axios.post(apiPath + 'admin/lecturer', this.lecturer).then(function (res) {
                 console.log(res);
                 _this.$emit('lecturerSaved');
             }).catch(function (err) {
