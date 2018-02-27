@@ -33477,7 +33477,225 @@ if (false) {
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": ""
+    }
+  }, [_c('form', {
+    attrs: {
+      "action": "",
+      "method": "post",
+      "role": "form"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.updateLecturer(_vm.lecturerData.id)
+      }
+    }
+  }, [_c('legend', [_vm._v("Dozenten Editieren.")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "firstname"
+    }
+  }, [_vm._v("Vorname")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturerData.firstname),
+      expression: "lecturerData.firstname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "",
+      "id": "firstname",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturerData.firstname)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturerData, "firstname", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "lastname"
+    }
+  }, [_vm._v("Nachname")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturerData.lastname),
+      expression: "lecturerData.lastname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "",
+      "id": "lastname",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturerData.lastname)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturerData, "lastname", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "core_competence"
+    }
+  }, [_vm._v("Kernkompetenz")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturerData.core_competence),
+      expression: "lecturerData.core_competence"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": "core_competence",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturerData.core_competence)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturerData, "core_competence", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "lessons_held"
+    }
+  }, [_vm._v("Lehrerfahrung")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturerData.lessons_held),
+      expression: "lecturerData.lessons_held"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": "lessons_held",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturerData.lessons_held)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturerData, "lessons_held", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "additional_info"
+    }
+  }, [_vm._v("Weitere Infos")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturerData.additional_info),
+      expression: "lecturerData.additional_info"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": "additional_info",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturerData.additional_info)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturerData, "additional_info", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('h4', [_vm._v("Fachbereiche")]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox-inline text-center"
+  }, _vm._l((_vm.departmentsEdit), function(department) {
+    return _c('label', {
+      staticClass: "fb"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.lecturerData.departments),
+        expression: "lecturerData.departments"
+      }],
+      attrs: {
+        "type": "checkbox",
+        "name": department.name,
+        "id": department.id
+      },
+      domProps: {
+        "value": department.id,
+        "checked": Array.isArray(_vm.lecturerData.departments) ? _vm._i(_vm.lecturerData.departments, department.id) > -1 : (_vm.lecturerData.departments)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.lecturerData.departments,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = department.id,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.lecturerData.departments = $$a.concat([$$v]))
+            } else {
+              $$i > -1 && (_vm.lecturerData.departments = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.$set(_vm.lecturerData, "departments", $$c)
+          }
+        }
+      }
+    }), _vm._v(" "), (department.name !== 'bachelor') ? _c('img', {
+      attrs: {
+        "src": _vm.imgPath + department.name + '.png',
+        "alt": "",
+        "height": "30px"
+      }
+    }) : (department.name === 'bachelor') ? _c('label', {
+      attrs: {
+        "for": department.id
+      }
+    }, [_vm._v("Bachelor")]) : _vm._e()])
+  }))]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Submit")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {

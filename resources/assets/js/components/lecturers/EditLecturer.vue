@@ -29,7 +29,7 @@
             </div>
 
             <div class="form-group">
-                <h4>Fachbereiche</h4
+                <h4>Fachbereiche</h4>
                 <div class="checkbox-inline text-center">
                     <label class="fb" v-for="department in departmentsEdit">
                         <input type="checkbox" :value="department.id" v-model="lecturerData.departments" :name="department.name" :id="department.id">
