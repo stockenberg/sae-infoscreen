@@ -1,7 +1,7 @@
 <template>
     <div class="" id="">
         <form action="" @submit.prevent="updateLecturer(lecturerData.id)" method="post" role="form">
-            <legend>Dozenten Editieren</legend>
+            <legend>Dozenten Editieren.</legend>
 
             <div class="form-group">
                 <label for="firstname">Vorname</label>
