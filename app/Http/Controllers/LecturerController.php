@@ -89,9 +89,21 @@ class LecturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+		$lecturer = Lecturer::find($request->id);
+
+		$lecturer->firstname = $request->firstname;
+		$lecturer->lastname = $request->lastname;
+		$lecturer->core_competence = $request->core_competence;
+		$lecturer->lessons_held = $request->lessons_held;
+		$lecturer->additional_info = $request->additional_info;
+
+		$lecturer->save();
+
+		$lecturer->departments()->sync($request->departments);
+
+		return response('edited');
     }
 
     /**

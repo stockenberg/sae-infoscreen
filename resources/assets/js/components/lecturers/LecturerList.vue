@@ -15,18 +15,32 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(lecturer,index) in lecturerData" :key="index">
-                <td>{{lecturer.lastname}}</td>
-                <td>{{lecturer.firstname}}</td>
-                <td>
-                    <img :src="iconPath + department.name + '.png'" height="24px" alt="" v-for="department in lecturer.departments" v-if="department.name !== 'bachelor'" />
-                    <span :for="department.id" v-else-if="department.name === 'bachelor'">Bachelor</span>
-                </td>
-                <td>{{lecturer.core_competence}}</td>
-                <td>{{lecturer.lessons_held}}</td>
-                <td>{{lecturer.additional_info}}</td>
-                <td><button class="btn btn-danger" @click.prevent="deleteLecturer(lecturer.id)">LÖSCHE!</button></td>
-            </tr>
+            <template v-for="(lecturer,index) in lecturerData">
+                <tr :key="index">
+                    <td>{{lecturer.lastname}}</td>
+                    <td>{{lecturer.firstname}}</td>
+                    <td>
+                        <img :src="iconPath + department.name + '.png'" height="24px" alt="" v-for="department in lecturer.departments"
+                             v-if="department.name !== 'bachelor'"/>
+                        <span :for="department.id" v-else-if="department.name === 'bachelor'">Bachelor</span>
+                    </td>
+                    <td>{{lecturer.core_competence}}</td>
+                    <td>{{lecturer.lessons_held}}</td>
+                    <td>{{lecturer.additional_info}}</td>
+                    <td>
+                        <button class="btn btn-danger" @click.prevent="deleteLecturer(lecturer.id)">LÖSCHE!</button>
+                        <button class="btn btn-info" @click.prevent="toggleEdit(lecturer.id)">Edit!</button>
+                    </td>
+
+                </tr>
+                <tr v-if="editLecturerToggle === lecturer.id">
+                    <td colspan="7">
+                        <edit-lecturer :departmentsEdit="departments" :lecturerEdit="lecturer" :imgPath="iconPath" @lecturerEdited="refreshList"
+                                       v-show="editLecturerToggle"></edit-lecturer>
+                    </td>
+                </tr>
+            </template>
+
             </tbody>
         </table>
     </div>
@@ -34,20 +48,32 @@
 
 <script>
     import AddLecturer from './AddLecturer';
+    import EditLecturer from './EditLecturer';
+
     export default {
         data() {
             return {
                 addLecturerToggle: false,
+                editLecturerToggle: null,
                 lecturerData: null,
+                departmentData: null,
             }
         },
         methods: {
             refreshList() {
                 this.addLecturerToggle = false;
+                this.editLecturerToggle = null;
                 axios.get(apiPath + 'lecturer/refresh')
                     .then(res => {
                         this.lecturerData = res.data;
                     })
+            },
+            toggleEdit(id){
+                if(this.editLecturerToggle === null ) {
+                    this.editLecturerToggle = id;
+                }else{
+                    this.editLecturerToggle = null;
+                }
             },
             deleteLecturer(id) {
                 axios.delete(apiPath + 'lecturer/' + id)
@@ -60,6 +86,7 @@
             console.log(this.lecturers);
             console.log('component ready..');
             this.lecturerData = this.lecturers;
+            this.departmentData = this.departments;
         },
         computed: {
             iconPath() {
@@ -67,7 +94,7 @@
             }
         },
         props: ['lecturers', 'imgPath', 'departments'],
-        components: {AddLecturer}
+        components: {AddLecturer, EditLecturer}
     }
 </script>
 

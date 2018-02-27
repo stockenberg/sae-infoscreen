@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/lecturer/refresh', 'LecturerController@refresh')->name('lecturer.refresh');
 Route::post('/lecturer', 'LecturerController@store')->name('lecturer.store');
 Route::delete('/lecturer/{id}', 'LecturerController@destroy')->name('lecturer.delete');
+Route::put('/lecturer/update', 'LecturerController@update')->name('lecturer.update');
 
 Route::get('/ircc/{id}',
 	['uses' => 'ircc\MainController@indexDepartments', 'as' => 'ircc.filtered']);
