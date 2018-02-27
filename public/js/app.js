@@ -34316,7 +34316,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.deleteLecturer(lecturer.id)
         }
       }
-    }, [_vm._v("LÖSCHE!")]), _vm._v(" "), _c('button', {
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-remove"
+    })]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-info",
       on: {
         "click": function($event) {
@@ -34324,7 +34326,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.toggleEdit(lecturer.id)
         }
       }
-    }, [_vm._v("Edit!")])])]), _vm._v(" "), (_vm.editLecturerToggle === lecturer.id) ? _c('tr', [_c('td', {
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-edit"
+    })])])]), _vm._v(" "), (_vm.editLecturerToggle === lecturer.id) ? _c('tr', [_c('td', {
       attrs: {
         "colspan": "7"
       }

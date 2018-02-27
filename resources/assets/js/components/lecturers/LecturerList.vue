@@ -28,8 +28,8 @@
                     <td>{{lecturer.lessons_held}}</td>
                     <td>{{lecturer.additional_info}}</td>
                     <td>
-                        <button class="btn btn-danger" @click.prevent="deleteLecturer(lecturer.id)">LÖSCHE!</button>
-                        <button class="btn btn-info" @click.prevent="toggleEdit(lecturer.id)">Edit!</button>
+                        <button class="btn btn-danger" @click.prevent="deleteLecturer(lecturer.id)"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-info" @click.prevent="toggleEdit(lecturer.id)"><span class="glyphicon glyphicon-edit"></span></button>
                     </td>
 
                 </tr>
