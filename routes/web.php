@@ -65,6 +65,13 @@ Route::group(["prefix" => "admin", 'middleware' => "auth"], function () {
 		Route::post('/import', ['uses' => 'ImportController@upload', 'as' => 'ircc.import.upload']);
 	});
 
+	Route::group(['prefix' => 'lecturer'], function () {
+		Route::get('/', 'LecturerController@index')->name('lecturer.index');
+		Route::get('/refresh', 'LecturerController@refresh')->name('lecturer.refresh');
+		Route::post('/', 'LecturerController@store')->name('lecturer.store');
+		Route::delete('/{id}', 'LecturerController@destroy')->name('lecturer.delete');
+	});
+
 });
 
 /**

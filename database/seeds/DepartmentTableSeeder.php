@@ -11,7 +11,7 @@ class DepartmentTableSeeder extends Seeder
      */
     public function run()
     {
-    	foreach (['web', 'audio', 'games', 'film', 'cross', 'animation'] as $v){
+    	foreach (['web', 'audio', 'games', 'film', 'cross', 'animation', 'bachelor'] as $v){
 			\Illuminate\Support\Facades\DB::table('departments')->insert([
 			'name' => $v,
 			'created_at' => \Carbon\Carbon::now(),

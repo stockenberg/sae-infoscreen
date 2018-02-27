@@ -16,8 +16,9 @@ window.Vue = require('vue');
  */
 
 import ContactList from './components/ircc/ContactList.vue';
+import LecturerList from './components/lecturers/LecturerList';
 
 const app = new Vue({
     el: '#app',
-    components: {ContactList}
+    components: {ContactList, LecturerList}
 });

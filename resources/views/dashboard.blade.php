@@ -28,6 +28,7 @@
                     <li><a href="">Tdot Verwaltung</a></li>
                     <li><a href="{{route('campus-tv')}}">Campus-TV Verwaltung</a></li>
                     <li><a href="{{route('ircc.main')}}">IRCC Tools</a></li>
+                    <li><a href="{{route('lecturer.index')}}">Dozentenliste</a></li>
                     <li>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();

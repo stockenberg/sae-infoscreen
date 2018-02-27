@@ -1296,6 +1296,8 @@ process.umask = function() { return 0; };
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1315,9 +1317,10 @@ window.Vue = __webpack_require__(56);
 
 
 
+
 var app = new Vue({
   el: '#app',
-  components: { ContactList: __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue___default.a }
+  components: { ContactList: __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue___default.a, LecturerList: __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList___default.a }
 });
 
 /***/ }),
@@ -44432,6 +44435,623 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddLecturer__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddLecturer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AddLecturer__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            addLecturerToggle: false,
+            lecturerData: null
+        };
+    },
+
+    methods: {
+        refreshList: function refreshList() {
+            var _this = this;
+
+            this.addLecturerToggle = false;
+            axios.get('/admin/lecturer/refresh').then(function (res) {
+                _this.lecturerData = res.data;
+            });
+        },
+        deleteLecturer: function deleteLecturer(id) {
+            var _this2 = this;
+
+            axios.delete('/admin/lecturer/' + id).then(function (res) {
+                _this2.refreshList();
+            });
+        }
+    },
+    mounted: function mounted() {
+        console.log(this.lecturers);
+        console.log('component ready..');
+        this.lecturerData = this.lecturers;
+    },
+
+    computed: {
+        iconPath: function iconPath() {
+            return this.imgPath + '/fb_icons/';
+        }
+    },
+    props: ['lecturers', 'imgPath', 'departments'],
+    components: { AddLecturer: __WEBPACK_IMPORTED_MODULE_0__AddLecturer___default.a }
+});
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(70)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(66),
+  /* template */
+  __webpack_require__(69),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/workstation/WebProjects/sae-infoscreen/www/resources/assets/js/components/lecturers/LecturerList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] LecturerList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f5bb987e", Component.options)
+  } else {
+    hotAPI.reload("data-v-f5bb987e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": ""
+    }
+  }, [_c('button', {
+    staticClass: "btn btn-success",
+    on: {
+      "click": function($event) {
+        _vm.addLecturerToggle = !_vm.addLecturerToggle
+      }
+    }
+  }, [_vm._v("Dozenten Hinzufügen")]), _vm._v(" "), _c('add-lecturer', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.addLecturerToggle),
+      expression: "addLecturerToggle"
+    }],
+    attrs: {
+      "departments": _vm.departments,
+      "imgPath": _vm.iconPath
+    },
+    on: {
+      "lecturerSaved": _vm.refreshList
+    }
+  }), _vm._v(" "), _c('table', {
+    staticClass: "table table-hover"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.lecturerData), function(lecturer, index) {
+    return _c('tr', {
+      key: index
+    }, [_c('td', [_vm._v(_vm._s(lecturer.lastname))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(lecturer.firstname))]), _vm._v(" "), _c('td', _vm._l((lecturer.departments), function(department) {
+      return (department.name !== 'bachelor') ? _c('img', {
+        attrs: {
+          "src": _vm.iconPath + department.name + '.png',
+          "height": "24px",
+          "alt": ""
+        }
+      }) : (department.name === 'bachelor') ? _c('span', {
+        attrs: {
+          "for": department.id
+        }
+      }, [_vm._v("Bachelor")]) : _vm._e()
+    })), _vm._v(" "), _c('td', [_vm._v(_vm._s(lecturer.core_competence))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(lecturer.lessons_held))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(lecturer.additional_info))]), _vm._v(" "), _c('td', [_c('button', {
+      staticClass: "btn btn-danger",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.deleteLecturer(lecturer.id)
+        }
+      }
+    }, [_vm._v("LÖSCHE!")])])])
+  }))])], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Nachname")]), _vm._v(" "), _c('th', [_vm._v("Vorname")]), _vm._v(" "), _c('th', [_vm._v("Department")]), _vm._v(" "), _c('th', [_vm._v("Kernkompetenz")]), _vm._v(" "), _c('th', [_vm._v("Lehrerfahrung")]), _vm._v(" "), _c('th', [_vm._v("Weitere Infos")]), _vm._v(" "), _c('th', [_vm._v("Manage")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f5bb987e", module.exports)
+  }
+}
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(67);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("21d69257", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-f5bb987e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LecturerList.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-f5bb987e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LecturerList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            lecturer: {
+                firstname: null,
+                lastname: null,
+                departments: [],
+                core_competence: null,
+                lessons_held: null,
+                additional_info: null
+            }
+        };
+    },
+
+    methods: {
+        saveLecturer: function saveLecturer() {
+            var _this = this;
+
+            axios.post('/admin/lecturer', this.lecturer).then(function (res) {
+                console.log(res);
+                _this.$emit('lecturerSaved');
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    },
+    mounted: function mounted() {
+        console.log('component ready..');
+    },
+
+    props: ['departments', 'imgPath']
+});
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(75)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(71),
+  /* template */
+  __webpack_require__(74),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/workstation/WebProjects/sae-infoscreen/www/resources/assets/js/components/lecturers/AddLecturer.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AddLecturer.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5f0b8ef6", Component.options)
+  } else {
+    hotAPI.reload("data-v-5f0b8ef6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": ""
+    }
+  }, [_c('form', {
+    attrs: {
+      "action": "",
+      "method": "post",
+      "role": "form"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.saveLecturer($event)
+      }
+    }
+  }, [_c('legend', [_vm._v("Dozenten Hinzufügen")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "firstname"
+    }
+  }, [_vm._v("Vorname")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturer.firstname),
+      expression: "lecturer.firstname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "",
+      "id": "firstname",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturer.firstname)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturer, "firstname", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "lastname"
+    }
+  }, [_vm._v("Nachname")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturer.lastname),
+      expression: "lecturer.lastname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "",
+      "id": "lastname",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturer.lastname)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturer, "lastname", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "core_competence"
+    }
+  }, [_vm._v("Kernkompetenz")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturer.core_competence),
+      expression: "lecturer.core_competence"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": "core_competence",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturer.core_competence)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturer, "core_competence", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "lessons_held"
+    }
+  }, [_vm._v("Lehrerfahrung")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturer.lessons_held),
+      expression: "lecturer.lessons_held"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": "lessons_held",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturer.lessons_held)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturer, "lessons_held", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "additional_info"
+    }
+  }, [_vm._v("Weitere Infos")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.lecturer.additional_info),
+      expression: "lecturer.additional_info"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": "additional_info",
+      "placeholder": "Input..."
+    },
+    domProps: {
+      "value": (_vm.lecturer.additional_info)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.lecturer, "additional_info", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('h4', [_vm._v("Fachbereiche")]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox-inline text-center"
+  }, _vm._l((_vm.departments), function(department) {
+    return _c('label', {
+      staticClass: "fb"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.lecturer.departments),
+        expression: "lecturer.departments"
+      }],
+      attrs: {
+        "type": "checkbox",
+        "name": department.name,
+        "id": department.id
+      },
+      domProps: {
+        "value": department.id,
+        "checked": Array.isArray(_vm.lecturer.departments) ? _vm._i(_vm.lecturer.departments, department.id) > -1 : (_vm.lecturer.departments)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.lecturer.departments,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = department.id,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.lecturer.departments = $$a.concat([$$v]))
+            } else {
+              $$i > -1 && (_vm.lecturer.departments = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.$set(_vm.lecturer, "departments", $$c)
+          }
+        }
+      }
+    }), _vm._v(" "), (department.name !== 'bachelor') ? _c('img', {
+      attrs: {
+        "src": _vm.imgPath + department.name + '.png',
+        "alt": "",
+        "height": "30px"
+      }
+    }) : (department.name === 'bachelor') ? _c('label', {
+      attrs: {
+        "for": department.id
+      }
+    }, [_vm._v("Bachelor")]) : _vm._e()])
+  }))]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Submit")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5f0b8ef6", module.exports)
+  }
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(72);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("19c44112", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-5f0b8ef6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddLecturer.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-5f0b8ef6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddLecturer.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);
