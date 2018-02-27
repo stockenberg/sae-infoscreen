@@ -60,7 +60,7 @@
         },
         methods: {
             saveLecturer() {
-                axios.post('/admin/lecturer', this.lecturer)
+                axios.post( apiPath + '/admin/lecturer', this.lecturer)
                     .then(res => {
                         console.log(res);
                         this.$emit('lecturerSaved');
