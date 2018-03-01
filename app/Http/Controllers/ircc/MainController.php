@@ -34,6 +34,21 @@ class MainController extends Controller
         return view('ircc.main', ['contacts' => $contacts, 'departments' => $departments]);
     }
 
+	public function map()
+	{
+		$departments = Department::all();
+
+		$contacts = IndustrialContact::with([
+			'departments',
+			'histories' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'jobs' => function ( $query ){ $query->orderBy('created_at', 'DESC'); },
+			'students'])
+			->orderBy('likes', 'DESC')
+			->get();
+
+		return view('ircc.map', ['contacts' => $contacts, 'departments' => $departments]);
+    }
+
 	public function updateContact(Request $request)
 	{
 		$contact = IndustrialContact::find($request->item['id']);
@@ -44,6 +59,7 @@ class MainController extends Controller
 		$contact->last_contact = $request['item']['last_contact'];
 		$contact->last_contact_person = $request['item']['last_contact_person'];
 		$contact->adress = $request['item']['adress'];
+		$contact->infos = $request['item']['infos'];
 
 		$contact->save();
 
@@ -174,6 +190,7 @@ class MainController extends Controller
         $industrialContact->last_contact = $request->last_contact;
         $industrialContact->last_contact_person = $request->last_contact_person;
         $industrialContact->adress = $request->adress;
+        $industrialContact->infos = $request->infos;
 
         $industrialContact->save();
         $industrialContact->departments()->attach($request->departments);

@@ -63,4 +63,7 @@
             </div>
         </div>
     </div>
+    <div>
+    @yield('backend_fullscreen')
+    </div>
 @endsection

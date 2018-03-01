@@ -51,7 +51,9 @@
                                 <div class="panel panel-default col col-md-6">
                                     <div class="panel-body">
                                         <h4 class="text-info">Adresse</h4>
-                                        <nl2br tag="p" :text="item.adress"></nl2br>
+                                        <p>{{item.adress}}</p>
+                                        <h4 class="text-info">weitere Infos</h4>
+                                        <nl2br tag="p" :text="item.infos"></nl2br>
                                         <hr>
                                         <h4 class="text-info">Kontakthistorie</h4>
                                         <ul class="list-group">

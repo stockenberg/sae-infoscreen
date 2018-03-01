@@ -21,7 +21,8 @@ class CreateIndustrialContactsTable extends Migration
             $table->string('primary_contact');
             $table->string('last_contact');
             $table->string('last_contact_person');
-            $table->text('adress');
+            $table->text('infos');
+            $table->string('adress');
             $table->timestamps();
         });*/
     }

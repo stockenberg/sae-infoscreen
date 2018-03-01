@@ -59,6 +59,7 @@ Route::group(["prefix" => "admin", 'middleware' => "auth"], function () {
 
 	Route::group(['prefix' => 'ircc'], function () {
 		Route::get('/', ['uses' => 'ircc\MainController@index', 'as' => 'ircc.main']);
+		Route::get('/map', ['uses' => 'ircc\MainController@map', 'as' => 'ircc.map']);
 		Route::get('/add', ['uses' => 'ircc\MainController@create', 'as' => 'ircc.create']);
 		Route::post('/add', ['uses' => 'ircc\MainController@store', 'as' => 'ircc.store']);
 		Route::get('/import', ['uses' => 'ImportController@index', 'as' => 'ircc.import.index']);

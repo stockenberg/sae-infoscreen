@@ -31,6 +31,8 @@
     <script src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/config.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNXafsoWjZuxiWSGo_pC0EXIM2YPfV1g"></script>
+    <script src="{{ asset('js/markerwithlabel.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -42,7 +42,11 @@
                         <hr>
                         <div class="form-group">
                             <label for="">Adresse</label>
-                            <textarea class="form-control" name="adress" id="" rows="3" v-model="item.adress"></textarea>
+                            <input type="text" class="form-control" name="adress" id="" v-model="item.adress" rows="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="">weitere Infos</label>
+                            <textarea class="form-control" name="infos" id="" v-model="item.infos" rows="3"></textarea>
                         </div>
                         <hr>
                         <div class="form-group">

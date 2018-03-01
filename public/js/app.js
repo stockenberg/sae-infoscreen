@@ -1298,6 +1298,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ircc_CompanyMap__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ircc_CompanyMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_ircc_CompanyMap__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1318,9 +1320,10 @@ window.Vue = __webpack_require__(71);
 
 
 
+
 var app = new Vue({
   el: '#app',
-  components: { ContactList: __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue___default.a, LecturerList: __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList___default.a }
+  components: { ContactList: __WEBPACK_IMPORTED_MODULE_0__components_ircc_ContactList_vue___default.a, LecturerList: __WEBPACK_IMPORTED_MODULE_1__components_lecturers_LecturerList___default.a, CompanyMap: __WEBPACK_IMPORTED_MODULE_2__components_ircc_CompanyMap___default.a }
 });
 
 /***/ }),
@@ -2356,6 +2359,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -2476,6 +2481,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -33261,10 +33270,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "panel-body"
     }, [_c('h4', {
       staticClass: "text-info"
-    }, [_vm._v("Adresse")]), _vm._v(" "), _c('nl2br', {
+    }, [_vm._v("Adresse")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(item.adress))]), _vm._v(" "), _c('h4', {
+      staticClass: "text-info"
+    }, [_vm._v("weitere Infos")]), _vm._v(" "), _c('nl2br', {
       attrs: {
         "tag": "p",
-        "text": item.adress
+        "text": item.infos
       }
     }), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h4', {
       staticClass: "text-info"
@@ -34162,7 +34173,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": ""
     }
-  }, [_vm._v("Adresse")]), _vm._v(" "), _c('textarea', {
+  }, [_vm._v("Adresse")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -34171,6 +34182,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
+      "type": "text",
       "name": "adress",
       "id": "",
       "rows": "3"
@@ -34182,6 +34194,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.$set(_vm.item, "adress", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("weitere Infos")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.item.infos),
+      expression: "item.infos"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "infos",
+      "id": "",
+      "rows": "3"
+    },
+    domProps: {
+      "value": (_vm.item.infos)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.item, "infos", $event.target.value)
       }
     }
   })]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
@@ -45503,6 +45543,168 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            name: null,
+            map: null
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        console.log(this.companies);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: { lat: 51.3400481, lng: 12.3720687 }
+        });
+
+        var _loop = function _loop(i) {
+            var name = _this.companies[i].name;
+            console.log(_this.companies[i].name);
+            $.ajax({
+                url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                method: "get",
+                data: { 'address': _this.companies[i].adress, 'key': 'AIzaSyBeNXafsoWjZuxiWSGo_pC0EXIM2YPfV1g' }
+            }).done(function (res) {
+                var marker = new MarkerWithLabel({
+                    position: new google.maps.LatLng(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng),
+                    map: map,
+                    labelContent: name,
+                    labelAnchor: new google.maps.Point(5, 41),
+                    labelClass: "labels", // the CSS class for the label
+                    labelStyle: { opacity: 1.0 }
+                });
+            });
+        };
+
+        for (var i = 0; i < this.companies.length; i++) {
+            _loop(i);
+        }
+    },
+
+    props: ['companies']
+});
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+exports.push([module.i, "\n#map {\n    height: 750px;\n    width: 100%;\n}\n.labels {\n    color: white;\n    background-color: #eb3a44;\n    font-family: \"Lucida Grande\", \"Arial\", sans-serif;\n    font-size: 12px;\n    font-weight: bold;\n    text-align: center;\n    padding: 3px;\n    margin-left: -10px;\n    white-space: nowrap;\n    border-radius: 2px;\n}\n", ""]);
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(85)
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(81),
+  /* template */
+  __webpack_require__(84),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/workstation/WebProjects/sae-infoscreen/www/resources/assets/js/components/ircc/CompanyMap.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CompanyMap.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3ae7cb76", Component.options)
+  } else {
+    hotAPI.reload("data-v-3ae7cb76", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": ""
+    }
+  }, [_c('div', {
+    attrs: {
+      "id": "map"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3ae7cb76", module.exports)
+  }
+}
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(82);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("de6b16e8", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3ae7cb76\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CompanyMap.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3ae7cb76\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CompanyMap.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);
