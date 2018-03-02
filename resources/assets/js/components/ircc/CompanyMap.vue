@@ -27,12 +27,9 @@ export default {
             center: {lat: 51.3400481, lng: 12.3720687}
         });
 
-
-
-
         for (let i = 0; i < this.companies.length; i++) {
-            const name = this.companies[i].name + " - " + this.companies[i].histories.length;
-            console.log(this.companies[i].name);
+            const name = this.companies[i].name + " - H:" + this.companies[i].histories.length + " S:" + this.companies[i].students.length;
+            console.log(this.companies[i]);
             if(typeof this.companies[i].adress !== 'undefined'){
                 $.ajax({
                     url: 'https://maps.googleapis.com/maps/api/geocode/json',
@@ -44,7 +41,7 @@ export default {
                         map: map,
                         labelContent: name,
                         labelAnchor: new google.maps.Point(5, 41),
-                        labelClass: "labels", // the CSS class for the label
+                        labelClass: 'labels', // the CSS class for the label
                         labelStyle: {opacity: 1.0}
                     });
                 });
@@ -72,5 +69,9 @@ export default {
     margin-left: -10px;
     white-space: nowrap;
     border-radius: 2px;
+}
+
+.student{
+    background-color: green;
 }
 </style>

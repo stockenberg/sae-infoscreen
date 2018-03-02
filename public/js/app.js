@@ -2247,8 +2247,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         var _loop = function _loop(i) {
-            var name = _this.companies[i].name + " - " + _this.companies[i].histories.length;
-            console.log(_this.companies[i].name);
+            var name = _this.companies[i].name + " - H:" + _this.companies[i].histories.length + " S:" + _this.companies[i].students.length;
+            console.log(_this.companies[i]);
             if (typeof _this.companies[i].adress !== 'undefined') {
                 $.ajax({
                     url: 'https://maps.googleapis.com/maps/api/geocode/json',
@@ -2260,7 +2260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         map: map,
                         labelContent: name,
                         labelAnchor: new google.maps.Point(5, 41),
-                        labelClass: "labels", // the CSS class for the label
+                        labelClass: 'labels', // the CSS class for the label
                         labelStyle: { opacity: 1.0 }
                     });
                 });
@@ -5394,7 +5394,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
-exports.push([module.i, "\n#map {\n    height: 750px;\n    width: 100%;\n}\n.labels {\n    color: white;\n    background-color: #eb3a44;\n    font-family: \"Lucida Grande\", \"Arial\", sans-serif;\n    font-size: 12px;\n    font-weight: bold;\n    text-align: center;\n    padding: 3px;\n    margin-left: -10px;\n    white-space: nowrap;\n    border-radius: 2px;\n}\n", ""]);
+exports.push([module.i, "\n#map {\n    height: 750px;\n    width: 100%;\n}\n.labels {\n    color: white;\n    background-color: #eb3a44;\n    font-family: \"Lucida Grande\", \"Arial\", sans-serif;\n    font-size: 12px;\n    font-weight: bold;\n    text-align: center;\n    padding: 3px;\n    margin-left: -10px;\n    white-space: nowrap;\n    border-radius: 2px;\n}\n.student{\n    background-color: green;\n}\n", ""]);
 
 /***/ }),
 /* 44 */
