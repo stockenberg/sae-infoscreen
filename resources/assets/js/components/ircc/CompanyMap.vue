@@ -20,16 +20,15 @@ export default {
     },
     mounted() {
 
-        console.log(this.companies);
-
         const map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: {lat: 51.3400481, lng: 12.3720687}
         });
 
         for (let i = 0; i < this.companies.length; i++) {
+
             const name = this.companies[i].name + " - H:" + this.companies[i].histories.length + " S:" + this.companies[i].students.length;
-            console.log(this.companies[i]);
+
             if(typeof this.companies[i].adress !== 'undefined'){
                 $.ajax({
                     url: 'https://maps.googleapis.com/maps/api/geocode/json',

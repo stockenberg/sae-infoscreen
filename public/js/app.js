@@ -2239,16 +2239,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        console.log(this.companies);
-
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: { lat: 51.3400481, lng: 12.3720687 }
         });
 
         var _loop = function _loop(i) {
+
             var name = _this.companies[i].name + " - H:" + _this.companies[i].histories.length + " S:" + _this.companies[i].students.length;
-            console.log(_this.companies[i]);
+
             if (typeof _this.companies[i].adress !== 'undefined') {
                 $.ajax({
                     url: 'https://maps.googleapis.com/maps/api/geocode/json',
