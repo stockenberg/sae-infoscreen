@@ -10,15 +10,21 @@
 
 
 .overview-nav{
-  a{
-    margin: 10px;
-    font-size: 24px;
-  }
+	a{
+		margin: 10px;
+		font-size: 24px;
+	}
 }
 
+.nav-item.dropdown{
+	&:hover .dropdown-menu{
+		display: block;
+	}
+} 
+
 .box{
-  text-align: center;
-  i{
-    font-size: 50px;
-  }
+	text-align: center;
+	i{
+		font-size: 50px;
+	}
 }

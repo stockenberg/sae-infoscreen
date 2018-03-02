@@ -23,3 +23,4 @@ const app = new Vue({
     el: '#app',
     components: {ContactList, LecturerList, CompanyMap }
 });
+
