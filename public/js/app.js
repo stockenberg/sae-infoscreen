@@ -2223,6 +2223,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2243,22 +2247,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         var _loop = function _loop(i) {
-            var name = _this.companies[i].name;
+            var name = _this.companies[i].name + " - " + _this.companies[i].histories.length;
             console.log(_this.companies[i].name);
-            $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json',
-                method: "get",
-                data: { 'address': _this.companies[i].adress, 'key': 'AIzaSyBeNXafsoWjZuxiWSGo_pC0EXIM2YPfV1g' }
-            }).done(function (res) {
-                var marker = new MarkerWithLabel({
-                    position: new google.maps.LatLng(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng),
-                    map: map,
-                    labelContent: name,
-                    labelAnchor: new google.maps.Point(5, 41),
-                    labelClass: "labels", // the CSS class for the label
-                    labelStyle: { opacity: 1.0 }
+            if (typeof _this.companies[i].adress !== 'undefined') {
+                $.ajax({
+                    url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                    method: "get",
+                    data: { 'address': _this.companies[i].adress, 'key': 'AIzaSyBeNXafsoWjZuxiWSGo_pC0EXIM2YPfV1g' }
+                }).done(function (res) {
+                    var marker = new MarkerWithLabel({
+                        position: new google.maps.LatLng(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng),
+                        map: map,
+                        labelContent: name,
+                        labelAnchor: new google.maps.Point(5, 41),
+                        labelClass: "labels", // the CSS class for the label
+                        labelStyle: { opacity: 1.0 }
+                    });
                 });
-            });
+            }
         };
 
         for (var i = 0; i < this.companies.length; i++) {
@@ -2283,6 +2289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_star_rating__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AutocompleteStudents_vue__);
+//
 //
 //
 //
@@ -33312,7 +33319,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })])
   })), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h3', {
     staticClass: "page-header"
-  }, [_vm._v("Industriepartner (" + _vm._s(_vm.items.length) + ")")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Industriepartner (" + _vm._s(_vm.items.length) + ")")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    attrs: {
+      "href": "ircc/map"
+    }
+  }, [_vm._v("Strategische Map")]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive"
   }, [_c('table', {
     staticClass: "table"
@@ -33823,18 +33835,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "container-fluid",
     attrs: {
       "id": ""
     }
-  }, [_c('div', {
+  }, [_c('h4', [_vm._v("Firmen ohne Adresse")]), _vm._v(" "), _vm._l((_vm.companies), function(company) {
+    return (company.adress === null) ? _c('p', {
+      staticClass: "label label-warning col col-md-2"
+    }, [_vm._v(_vm._s(company.name))]) : _vm._e()
+  }), _vm._v(" "), _c('div', {
     attrs: {
       "id": "map"
     }
-  })])
-}]}
+  })], 2)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

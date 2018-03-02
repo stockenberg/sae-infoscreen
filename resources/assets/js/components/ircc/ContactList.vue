@@ -9,6 +9,7 @@
         <!-- Button trigger modal -->
         <hr>
         <h3 class="page-header">Industriepartner ({{ items.length }})</h3>
+        <a href="ircc/map" class="btn btn-info">Strategische Map</a>
         <div class="table-responsive">
             <table class="table">
                 <thead>
