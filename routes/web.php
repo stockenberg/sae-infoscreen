@@ -11,7 +11,7 @@
 |
 */
 
-header('Access-Control-Allow-Origin: http://localhost:8080');
+header('Access-Control-Allow-Origin: *');
 
 Route::get('/', function () {
 	return view('welcome');

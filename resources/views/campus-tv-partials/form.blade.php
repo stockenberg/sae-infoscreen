@@ -18,10 +18,9 @@
        <div class="form-group">
            <label for="">Hintergrund</label>
            <select name="background" id="inputID" class="form-control">
-               <option value="bgBlue" {{$event && $event->background === "bgBlue" ? 'selected' : ''}}>Blau</option>
-               <option value="bgLightblue" {{$event && $event->background === "bgLightblue" ? 'selected' : ''}}>Hellblau</option>
-               <option value="bgYellow" {{$event && $event->background === "bgYellow" ? 'selected' : ''}}>Gelb</option>
-               <option value="bgOrange" {{$event && $event->background === "bgOrange" ? 'selected' : ''}}>Orange</option>
+               <option value="red" {{$event && $event->background === "red" ? 'selected' : ''}}>Job Angebot</option>
+               <option value="teal darken-3" {{$event && $event->background === "teal darken-3" ? 'selected' : ''}}>Praktikumsstelle</option>
+               <option value="deep-purple" {{$event && $event->background === "deep-purple" ? 'selected' : ''}}>Ankündigung</option>
            </select>
        </div>
 
