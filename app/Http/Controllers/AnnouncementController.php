@@ -59,7 +59,6 @@ class AnnouncementController extends Controller
 
         $event->headline = $request->headline;
         $event->details = $request->details;
-        $event->subheadline = $request->subheadline;
         $event->background = $request->background;
         $event->active = $request->active ?? false;
 

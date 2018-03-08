@@ -6,18 +6,13 @@
         <legend>Neue Info</legend>
 
         <div class="form-group">
-            <label for="">Erste Überschrift</label>
+            <label for="">Überschrift</label>
             <input type="text" class="form-control" name="headline" id="" value="{{($event) ? $event->headline : ''}}" placeholder="">
         </div>
 
         <div class="form-group">
             <label for="">Details</label>
-            <input type="text" class="form-control" name="details" id="" value="{{($event) ? $event->details : ''}}" placeholder="">
-        </div>
-
-        <div class="form-group">
-            <label for="">zweite Überschrift</label>
-            <input type="text" class="form-control" name="subheadline" id="" value="{{($event) ? $event->subheadline: ''}}" placeholder="">
+            <textarea class="form-control" name="details" id="" placeholder="">{{($event) ? $event->details : ''}}</textarea>
         </div>
 
        <div class="form-group">
