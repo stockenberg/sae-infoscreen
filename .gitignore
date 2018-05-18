@@ -11,3 +11,5 @@ npm-debug.log
 .env
 /public/js/config.js
 test/
+
+public/js/app\.js

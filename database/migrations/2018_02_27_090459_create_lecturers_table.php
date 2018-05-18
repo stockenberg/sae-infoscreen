@@ -13,6 +13,7 @@ class CreateLecturersTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('lecturers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
@@ -22,7 +23,7 @@ class CreateLecturersTable extends Migration
             $table->longText('additional_info');
 			$table->softDeletes();
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -31,7 +32,7 @@ class CreateLecturersTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {/*
         Schema::dropIfExists('lecturers');
-    }
+    */}
 }

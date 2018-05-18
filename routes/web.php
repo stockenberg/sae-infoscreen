@@ -57,6 +57,10 @@ Route::group(["prefix" => "admin", 'middleware' => "auth"], function () {
 	Route::get('/campus-tv/delete/{id}', 'AnnouncementController@destroy')->name('campus-tv-destroy');
 	Route::get('/campus-tv/toggle/{id}','AnnouncementController@toggleVisibility')->name('campus-tv-toggle');
 
+	Route::group(['prefix' => 'booking'], function () {
+	   Route::get('/', ['uses' => 'booking\BookingController@index', 'as' => 'booking.main']);
+    });
+
 	Route::group(['prefix' => 'ircc'], function () {
 		Route::get('/', ['uses' => 'ircc\MainController@index', 'as' => 'ircc.main']);
 		Route::get('/map', ['uses' => 'ircc\MainController@map', 'as' => 'ircc.map']);

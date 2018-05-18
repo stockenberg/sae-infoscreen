@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentLecturerTable extends Migration
+class CreateAudioEquipmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateDepartmentLecturerTable extends Migration
      */
     public function up()
     {
-        /*
-		Schema::create('department_lecturer', function (Blueprint $table) {
-			$table->increments('id');
-			$table->integer('department_id');
-			$table->integer('lecturer_id');
-			$table->timestamps();
-		});*/
+        Schema::create('audio_equipments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('count');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -28,7 +27,7 @@ class CreateDepartmentLecturerTable extends Migration
      * @return void
      */
     public function down()
-    {/*
-		Schema::dropIfExists('department_lecturers');
-	*/}
+    {
+        Schema::dropIfExists('audio_equipments');
+    }
 }

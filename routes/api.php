@@ -50,3 +50,5 @@ Route::get('/ircc/autocomplete/student', ['uses' => 'ircc\MainController@autocom
 Route::post('/ircc/updateContact', [
 	'uses' => 'ircc\MainController@updateContact', 'as' => 'ircc.update.contact'
 ]);
+
+Route::post('/bookings/audio_equipment', ['uses' => 'booking\BookingController@fetchAudio']);
