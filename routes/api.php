@@ -50,3 +50,9 @@ Route::get('/ircc/autocomplete/student', ['uses' => 'ircc\MainController@autocom
 Route::post('/ircc/updateContact', [
 	'uses' => 'ircc\MainController@updateContact', 'as' => 'ircc.update.contact'
 ]);
+
+/**
+ * Rooms
+ */
+
+Route::get('/room/{id}', ['uses' => 'RateController@indexApi']);
