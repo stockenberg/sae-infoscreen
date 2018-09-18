@@ -9,11 +9,19 @@
     <div id="content" class="clearfix col">
 
         <div id="lecture" class="grid_8 clearfix">
+
             @for ($room = 1; $room <= 4; $room++)
+                <?php $lessonsExist = false; ?>
+                @foreach($lectures as $i => $l)
+                    @if($l[':room'] == $room)
+                        <?php $lessonsExist = true ?>
+                    @endif
+                @endforeach
+                @if($lessonsExist)
                 <div class="grid_2">
                     <h3>Raum: {{ $room }} </h3>
                     <table class="table room_{{ $room }}">
-                        @for ($runningTime = strtotime($start); $runningTime <= strtotime($end); $runningTime += 1800)
+                    @for ($runningTime = strtotime($start); $runningTime <= strtotime($end); $runningTime += 1800)
                             @foreach ($lectures as $row => $lecture)
                                 @if ($lecture[":room"] == $room)
                                     @if (strtotime($lecture[":starttime"]) == $runningTime)
@@ -35,8 +43,8 @@
                                     @endif
                                 @endif
                             @endforeach
-                            <tr>
 
+                            <tr>
                                 <td>{{ date("H:i", $runningTime) }}</td>
                                 <td class="{{ ($lessons[$room][$runningTime]["span"] ?? "") ? "lesson" : "" }}"
                                     rowspan="{{ $lessons[$room][$runningTime]["span"] ?? 0 }}">
@@ -55,6 +63,7 @@
                         @endfor
                     </table>
                 </div>
+                @endif
             @endfor
 
         </div>
